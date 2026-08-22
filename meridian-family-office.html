@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arocena Advisors — Real Estate Advisory · Argentina & Uruguay</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;1,9..144,200;1,9..144,300&family=Schibsted+Grotesk:wght@400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+/* ── TOKENS ─────────────── */
+:root{
+  --off:#F5F2EC;       /* warm off-white — not flat */
+  --off2:#EEE9DF;      /* slightly deeper warm */
+  --ink:#0D0E0F;
+  --ink-50:rgba(13,14,15,.5);
+  --ink-15:rgba(13,14,15,.15);
+  --ink-07:rgba(13,14,15,.07);
+  --cel:#4B9FD5;       /* celeste uruguayo */
+  --cel-dk:#2370A8;    /* deep celeste */
+  --cel-bg:#EBF3FB;    /* light celeste bg */
+  --hero-ov:rgba(4,14,28,.64);
+  --f:'Fraunces',Georgia,serif;
+  --s:'Schibsted Grotesk',system-ui,sans-serif;
+  --m:'JetBrains Mono',monospace;
+  --pad:clamp(20px,5vw,90px);
+  --ease:cubic-bezier(.16,1,.3,1);
+  --nh:62px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+body{background:var(--off);color:var(--ink);font-family:var(--s);overflow-x:hidden}
+::selection{background:var(--cel-dk);color:#fff}
+a{color:inherit;text-decoration:none}
+img{display:block;width:100%;height:100%;object-fit:cover}
+
+/* ── PROGRESS ───────────── */
+#prog{position:fixed;top:0;left:0;height:2px;background:var(--cel);z-index:9999;width:0;transition:width .1s linear}
+
+/* ── NAV ─────────────────── */
+#nav{
+  position:fixed;top:0;left:0;width:100%;z-index:900;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 var(--pad);height:var(--nh);
+  transition:background .5s var(--ease), border-color .5s;
+  border-bottom:1px solid transparent;
+}
+#nav.lit{background:rgba(245,242,236,.92);backdrop-filter:blur(12px) saturate(140%);border-color:var(--ink-15)}
+.logo{font-family:var(--f);font-weight:200;font-size:17px;letter-spacing:.42em;color:#fff;transition:color .4s}
+#nav.lit .logo{color:var(--ink)}
+.logo .d{color:var(--cel)}
+.nls{display:flex;gap:26px;align-items:center}
+.nls a{font-family:var(--m);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(255,255,255,.7);transition:color .3s;white-space:nowrap}
+#nav.lit .nls a{color:var(--ink-50)}
+.nls a:hover,.nls a.on{color:#fff}
+#nav.lit .nls a:hover,#nav.lit .nls a.on{color:var(--ink)}
+.ncta{font-family:var(--m);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  border:1px solid rgba(255,255,255,.4);color:#fff;
+  padding:10px 20px;border-radius:40px;transition:.4s var(--ease)}
+#nav.lit .ncta{border-color:var(--ink-15);color:var(--ink)}
+.ncta:hover{background:#fff;color:var(--ink);border-color:#fff}
+#nav.lit .ncta:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.nbg{display:none;flex-direction:column;gap:5px;padding:6px}
+.nbg span{display:block;width:22px;height:1px;background:#fff;transition:.4s}
+#nav.lit .nbg span{background:var(--ink)}
+
+/* mobile menu */
+#mob{position:fixed;inset:0;z-index:800;background:var(--ink);
+  display:flex;flex-direction:column;justify-content:center;
+  padding:var(--pad);gap:2px;transform:translateX(100%);transition:transform .7s var(--ease)}
+#mob.open{transform:none}
+#mob a{font-family:var(--f);font-weight:200;color:#fff;
+  font-size:clamp(32px,8vw,56px);padding:10px 0;display:block;
+  border-bottom:1px solid rgba(255,255,255,.08)}
+#mob a:hover{color:var(--cel)}
+#mob .mc{margin-top:28px;font-family:var(--m);font-size:10px;letter-spacing:.2em;
+  text-transform:uppercase;background:var(--cel-dk);color:#fff;
+  padding:15px 28px;border-radius:40px;display:inline-block}
+
+/* ── HERO ─────────────────── */
+#hero{
+  position:relative;height:100svh;min-height:580px;
+  overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 var(--pad) clamp(36px,5vw,64px);
+  color:#fff;
+}
+/* full-bleed photo */
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{
+  width:100%;height:115%;object-fit:cover;
+  transform:translateY(0);will-change:transform;
+  transition:transform .2s linear;
+}
+.hero-scrim{
+  position:absolute;inset:0;z-index:1;
+  background:
+    linear-gradient(180deg, rgba(4,12,24,.3) 0%, transparent 30%, rgba(4,14,28,.55) 70%, rgba(4,14,28,.82) 100%),
+    linear-gradient(90deg, rgba(4,14,28,.3) 0%, transparent 60%);
+}
+/* content above scrim */
+.hero-content{position:relative;z-index:2;display:flex;flex-direction:column;gap:0}
+.hero-tag{
+  font-family:var(--m);font-size:10px;letter-spacing:.3em;
+  text-transform:uppercase;color:rgba(255,255,255,.55);
+  display:flex;align-items:center;gap:12px;margin-bottom:clamp(16px,2.5vw,28px);
+  opacity:0;animation:fadeUp .7s var(--ease) .2s forwards;
+}
+.hero-tag .pulse{width:5px;height:5px;border-radius:50%;background:var(--cel);flex-shrink:0;
+  animation:blink 2.4s ease infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* THE BIG HEADLINE */
+h1.hero-h{
+  font-family:var(--f);font-weight:200;
+  font-size:clamp(54px,9.5vw,150px);
+  letter-spacing:-.025em;line-height:.96;
+  margin-bottom:clamp(24px,3.5vw,44px);
+}
+.word{display:inline-block;overflow:hidden;vertical-align:bottom}
+.wi{display:inline-block;transform:translateY(105%);
+  animation:wUp .85s var(--ease) forwards;opacity:0}
+.wi.it{font-style:italic;color:rgba(255,255,255,.7)}
+@keyframes wUp{to{transform:translateY(0);opacity:1}}
+@keyframes fadeUp{to{opacity:1;transform:none}}
+
+/* hero bottom bar */
+.hero-foot{
+  display:grid;grid-template-columns:1fr auto;
+  align-items:end;gap:24px;
+  border-top:1px solid rgba(255,255,255,.18);
+  padding-top:clamp(18px,2.5vw,28px);margin-top:0;
+}
+.hero-sub{
+  font-size:clamp(14px,1.1vw,16px);color:rgba(255,255,255,.65);
+  line-height:1.7;max-width:44ch;
+  opacity:0;animation:fadeUp .8s var(--ease) 1.4s forwards;
+}
+.hero-ctas{display:flex;gap:10px;flex-wrap:wrap;flex-shrink:0;
+  opacity:0;animation:fadeUp .7s var(--ease) 1.6s forwards}
+
+/* ── BUTTONS ─────────────── */
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--m);font-size:10px;
+  letter-spacing:.2em;text-transform:uppercase;padding:14px 26px;border-radius:40px;
+  transition:.5s var(--ease);cursor:pointer;border:1px solid transparent}
+.btn .ar{transition:transform .5s var(--ease)}
+.btn:hover .ar{transform:translateX(5px)}
+.btn-w{background:#fff;color:var(--ink);border-color:#fff}
+.btn-w:hover{background:var(--cel-dk);color:#fff;border-color:var(--cel-dk)}
+.btn-o{background:transparent;color:#fff;border-color:rgba(255,255,255,.4)}
+.btn-o:hover{background:rgba(255,255,255,.12);border-color:#fff}
+.btn-dk{background:var(--ink);color:#fff;border-color:var(--ink)}
+.btn-dk:hover{background:var(--cel-dk);border-color:var(--cel-dk)}
+.btn-cel{background:var(--cel-dk);color:#fff;border-color:var(--cel-dk)}
+.btn-cel:hover{background:var(--ink);border-color:var(--ink)}
+.link-a{font-family:var(--m);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:9px;padding-bottom:5px;
+  border-bottom:1px solid var(--ink-15);transition:.45s var(--ease)}
+.link-a:hover{gap:16px;border-color:var(--ink)}
+
+/* ── REVEAL ──────────────── */
+.rv,.rv-u{opacity:1;transform:none}
+body.js .rv{opacity:0;transform:translateY(26px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
+body.js .rv-u{opacity:0;transform:translateY(14px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+body.js .rv.in,body.js .rv-u.in{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.22s}.d3{transition-delay:.34s}.d4{transition-delay:.46s}
+
+/* ── TICKER ──────────────── */
+.ticker{background:var(--cel-dk);padding:14px 0;overflow:hidden}
+.ticker-t{display:flex;white-space:nowrap;animation:tick 26s linear infinite}
+.ticker-t:hover{animation-play-state:paused}
+.ti{display:inline-flex;align-items:center;gap:32px;padding:0 32px;
+  font-family:var(--m);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.65)}
+.ti .dot{width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.5);flex-shrink:0}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── ABOUT ───────────────── */
+#about{background:var(--off);padding:clamp(90px,12vw,170px) 0}
+.ab-grid{
+  max-width:1300px;margin:0 auto;padding:0 var(--pad);
+  display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(48px,7vw,120px);align-items:center;
+}
+.ab-img{position:relative;aspect-ratio:3/4;border-radius:3px;overflow:hidden;background:#1A2A3A}
+.ab-img img{position:absolute;inset:0;transition:transform 8s ease;transform:scale(1.05)}
+.ab-img:hover img{transform:scale(1)}
+.ab-copy{display:flex;flex-direction:column;gap:clamp(22px,3vw,34px)}
+.ab-label{font-family:var(--m);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--cel-dk)}
+
+/* TYPE HIERARCHY — section title goes big */
+h2.sec-h{
+  font-family:var(--f);font-weight:200;
+  font-size:clamp(38px,5vw,74px);
+  letter-spacing:-.018em;line-height:1.04;
+}
+/* supporting text = small and quiet */
+.support{font-size:clamp(14px,1vw,16px);color:var(--ink-50);line-height:1.8;max-width:44ch}
+.bq{
+  padding:22px 26px;
+  border-left:2px solid var(--cel-dk);background:var(--cel-bg);
+  border-radius:0 3px 3px 0;
+}
+.bq p{font-family:var(--f);font-style:italic;font-size:clamp(17px,1.4vw,21px);
+  line-height:1.6;color:var(--ink);max-width:100%}
+.pill-row{display:flex;flex-direction:column;gap:0}
+.pill{
+  display:flex;align-items:center;gap:14px;
+  padding:12px 0;border-bottom:1px solid var(--ink-07);
+  font-family:var(--m);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-50);
+}
+.pill::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--cel-dk);flex-shrink:0}
+
+/* ── APPROACH ────────────── */
+#approach{background:var(--cel-bg);padding:clamp(90px,12vw,160px) 0}
+.ap-inner{max-width:1300px;margin:0 auto;padding:0 var(--pad)}
+.ap-head{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,100px);align-items:end;
+  margin-bottom:clamp(60px,8vw,100px)}
+.hub-wrap{max-width:680px;margin:0 auto}
+.hub-svg{width:100%;height:auto;display:block}
+/* spoke animation */
+.spoke{stroke-dasharray:240;stroke-dashoffset:240;transition:stroke-dashoffset 1s var(--ease)}
+.hub-wrap.in .spoke:nth-child(1){stroke-dashoffset:0;transition-delay:.05s}
+.hub-wrap.in .spoke:nth-child(2){stroke-dashoffset:0;transition-delay:.15s}
+.hub-wrap.in .spoke:nth-child(3){stroke-dashoffset:0;transition-delay:.25s}
+.hub-wrap.in .spoke:nth-child(4){stroke-dashoffset:0;transition-delay:.35s}
+.hub-wrap.in .spoke:nth-child(5){stroke-dashoffset:0;transition-delay:.45s}
+.hub-wrap.in .spoke:nth-child(6){stroke-dashoffset:0;transition-delay:.55s}
+.hub-wrap.in .spoke:nth-child(7){stroke-dashoffset:0;transition-delay:.65s}
+.hub-wrap.in .spoke:nth-child(8){stroke-dashoffset:0;transition-delay:.75s}
+.hub-node-g{opacity:0;transform:scale(.6);transform-box:fill-box;transform-origin:center;
+  transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.hub-wrap.in .hub-node-g{opacity:1;transform:scale(1)}
+.hub-wrap.in .hub-node-g:nth-child(9){transition-delay:.15s}
+.hub-wrap.in .hub-node-g:nth-child(10){transition-delay:.25s}
+.hub-wrap.in .hub-node-g:nth-child(11){transition-delay:.35s}
+.hub-wrap.in .hub-node-g:nth-child(12){transition-delay:.45s}
+.hub-wrap.in .hub-node-g:nth-child(13){transition-delay:.55s}
+.hub-wrap.in .hub-node-g:nth-child(14){transition-delay:.65s}
+.hub-wrap.in .hub-node-g:nth-child(15){transition-delay:.75s}
+.hub-wrap.in .hub-node-g:nth-child(16){transition-delay:.85s}
+.hub-center-g{opacity:0;transform:scale(.4);transform-box:fill-box;transform-origin:center;
+  transition:opacity .7s var(--ease) .05s,transform .7s var(--ease) .05s}
+.hub-wrap.in .hub-center-g{opacity:1;transform:scale(1)}
+/* mobile hub */
+.hub-mob{display:none;grid-template-columns:1fr 1fr;gap:1px;background:var(--ink-15);margin-top:40px;overflow:hidden;border-radius:2px}
+.hmc{background:var(--cel-bg);padding:18px 20px;display:flex;align-items:center;gap:10px;
+  font-family:var(--m);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-50)}
+.hmc:hover{background:#dceef9}
+
+/* ── SERVICES ────────────── */
+#services{background:var(--off);padding:clamp(90px,12vw,160px) 0}
+.srv-inner{max-width:1300px;margin:0 auto;padding:0 var(--pad)}
+.srv-top{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  flex-wrap:wrap;gap:20px;border-bottom:1px solid var(--ink-15);
+  padding-bottom:clamp(36px,4vw,52px);margin-bottom:0;
+}
+.srv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--ink-15)}
+.srv-c{
+  background:var(--off);padding:clamp(32px,4vw,52px) clamp(20px,3vw,34px);
+  display:flex;flex-direction:column;gap:16px;cursor:default;
+  position:relative;overflow:hidden;transition:background .35s var(--ease);
+}
+.srv-c::after{content:"";position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:var(--cel-dk);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.srv-c:hover{background:var(--cel-bg)}
+.srv-c:hover::after{transform:scaleX(1)}
+/* the number — visual anchor, large */
+.srv-num{
+  font-family:var(--f);font-weight:200;
+  font-size:clamp(42px,4.5vw,64px);
+  letter-spacing:-.02em;line-height:1;
+  color:var(--ink-15);
+}
+.srv-c h3{font-family:var(--f);font-weight:200;font-size:clamp(18px,1.8vw,24px);line-height:1.12}
+.srv-items{display:flex;flex-direction:column;gap:0;margin-top:6px}
+.srv-item{font-family:var(--m);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-50);padding:9px 0;border-top:1px solid var(--ink-07);
+  display:flex;align-items:center;gap:8px}
+.srv-item::before{content:"";width:3px;height:3px;border-radius:50%;background:var(--cel-dk);flex-shrink:0}
+
+/* ── JOURNEY ─────────────── */
+#journey{background:var(--ink);color:#fff;padding:clamp(90px,12vw,160px) 0}
+.jrn-inner{max-width:1300px;margin:0 auto;padding:0 var(--pad)}
+/* headline on dark */
+h2.jrn-h{color:#fff}
+h2.jrn-h em{color:rgba(255,255,255,.3);font-style:italic}
+.j-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  background:rgba(255,255,255,.1);margin-top:clamp(48px,6vw,72px)}
+.j-step{background:var(--ink);padding:clamp(28px,3.5vw,46px) clamp(18px,2.5vw,30px);
+  display:flex;flex-direction:column;gap:16px;
+  opacity:0;transform:translateY(32px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.j-steps.in .j-step:nth-child(1){opacity:1;transform:none;transition-delay:.04s}
+.j-steps.in .j-step:nth-child(2){opacity:1;transform:none;transition-delay:.16s}
+.j-steps.in .j-step:nth-child(3){opacity:1;transform:none;transition-delay:.28s}
+.j-steps.in .j-step:nth-child(4){opacity:1;transform:none;transition-delay:.40s}
+.j-step:hover{background:#141415}
+.jn{font-family:var(--m);font-size:10px;letter-spacing:.22em;color:var(--cel)}
+.jt{font-family:var(--f);font-weight:200;font-size:clamp(22px,2.2vw,32px);color:#fff;line-height:1.08}
+.jp{font-size:13px;color:rgba(255,255,255,.5);line-height:1.7;max-width:100%}
+.j-items{display:flex;flex-direction:column;gap:5px;margin-top:4px}
+.j-li{font-family:var(--m);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,.32);display:flex;align-items:center;gap:7px}
+.j-li::before{content:"";width:3px;height:3px;border-radius:50%;background:var(--cel);flex-shrink:0}
+
+/* ── URUGUAY ─────────────── */
+#uruguay{position:relative;min-height:clamp(440px,55vw,680px);overflow:hidden;
+  display:flex;align-items:flex-end;}
+.ury-bg{position:absolute;inset:-8% 0;z-index:0}
+.ury-bg img{height:116%;object-fit:cover;transition:transform .2s linear}
+.ury-scrim{position:absolute;inset:0;z-index:1;
+  background:linear-gradient(90deg,rgba(4,18,40,.88) 0%,rgba(4,18,40,.6) 55%,rgba(4,18,40,.15) 100%)}
+.ury-content{
+  position:relative;z-index:2;max-width:1300px;margin:0 auto;width:100%;
+  padding:clamp(50px,7vw,90px) var(--pad);display:grid;
+  grid-template-columns:.65fr .35fr;gap:clamp(40px,6vw,80px);align-items:end;
+}
+.ury-left{display:flex;flex-direction:column;gap:clamp(20px,3vw,32px)}
+.ury-label{font-family:var(--m);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+h2.ury-h{font-family:var(--f);font-weight:200;color:#fff;
+  font-size:clamp(34px,4.8vw,70px);letter-spacing:-.018em;line-height:1.04}
+.ury-right{display:flex;flex-direction:column;gap:0}
+.ury-r{display:flex;align-items:baseline;gap:12px;
+  padding:11px 0;border-top:1px solid rgba(255,255,255,.15)}
+.ury-r:last-child{border-bottom:1px solid rgba(255,255,255,.15)}
+.ury-ri{font-family:var(--m);font-size:9px;letter-spacing:.16em;color:rgba(255,255,255,.35);flex-shrink:0;width:18px}
+.ury-rt{font-size:13px;color:rgba(255,255,255,.75);line-height:1.5}
+
+/* ── WHO ─────────────────── */
+#who{background:var(--off2);padding:clamp(90px,12vw,160px) 0}
+.who-inner{max-width:1300px;margin:0 auto;padding:0 var(--pad)}
+.who-top{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,100px);
+  align-items:end;margin-bottom:clamp(52px,6vw,80px)}
+.who-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ink-15)}
+.who-c{background:var(--off2);padding:clamp(28px,3.5vw,44px) clamp(20px,3vw,32px);
+  display:flex;flex-direction:column;gap:8px;cursor:default;
+  position:relative;transition:background .35s var(--ease)}
+.who-c::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;
+  background:var(--cel-dk);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.who-c:hover{background:var(--cel-bg)}
+.who-c:hover::before{transform:scaleX(1)}
+.who-c h3{font-family:var(--f);font-weight:200;font-size:clamp(18px,1.7vw,22px);line-height:1.12}
+.who-sub{font-family:var(--m);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-50)}
+
+/* ── NETWORK ─────────────── */
+#network{background:var(--off);padding:clamp(90px,12vw,160px) 0}
+.net-inner{max-width:1300px;margin:0 auto;padding:0 var(--pad)}
+.net-top{display:flex;justify-content:space-between;align-items:flex-end;
+  flex-wrap:wrap;gap:20px;margin-bottom:clamp(48px,6vw,72px)}
+.net-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--ink-15)}
+.net-c{background:var(--off);padding:clamp(24px,3vw,36px) clamp(18px,2.5vw,28px);
+  display:flex;flex-direction:column;gap:8px;
+  transition:background .35s var(--ease),transform .35s var(--ease)}
+.net-c:hover{background:var(--cel-bg);transform:translateY(-2px)}
+.ni-icon{font-size:20px;margin-bottom:4px}
+.net-c h4{font-family:var(--f);font-weight:200;font-size:clamp(16px,1.3vw,20px);line-height:1.12}
+
+/* ── INSIGHTS ────────────── */
+#insights{background:var(--off2);padding:clamp(80px,10vw,140px) 0}
+.ins-inner{max-width:1300px;margin:0 auto;padding:0 var(--pad)}
+.ins-top{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;
+  border-bottom:1px solid var(--ink-15);padding-bottom:28px;margin-bottom:0}
+.ins-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ink-15)}
+.ins-c{background:var(--off2);padding:clamp(26px,3.5vw,42px) clamp(18px,2.5vw,30px);
+  display:flex;flex-direction:column;gap:12px;cursor:pointer;transition:background .35s}
+.ins-c:hover{background:var(--cel-bg)}
+.ins-tag{font-family:var(--m);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--cel-dk)}
+.ins-t{font-family:var(--f);font-weight:200;font-size:clamp(17px,1.7vw,24px);line-height:1.18;flex:1}
+.ins-foot{display:flex;justify-content:space-between;align-items:center;
+  padding-top:14px;border-top:1px solid var(--ink-15);margin-top:auto}
+.ins-date{font-family:var(--m);font-size:9px;letter-spacing:.16em;color:var(--ink-50)}
+
+/* ── CONTACT ─────────────── */
+#contact{background:var(--off);padding:clamp(90px,12vw,160px) 0}
+.ctc-inner{max-width:1300px;margin:0 auto;padding:0 var(--pad)}
+.ctc-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(60px,8vw,130px)}
+.ctc-copy{display:flex;flex-direction:column;gap:24px}
+.ctc-meta{display:flex;flex-direction:column;gap:16px;margin-top:4px}
+.cm{display:flex;flex-direction:column;gap:3px}
+.cml{font-family:var(--m);font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-50)}
+.cmv{font-family:var(--f);font-weight:200;font-size:clamp(16px,1.3vw,20px)}
+.ff{display:flex;flex-direction:column;gap:7px}
+.fl{font-family:var(--m);font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-50)}
+.ff input,.ff select,.ff textarea{
+  background:transparent;border:none;border-bottom:1px solid var(--ink-15);
+  color:var(--ink);font-family:var(--s);font-size:16px;padding:10px 0;
+  transition:border-color .4s;width:100%;
+}
+.ff input:focus,.ff select:focus,.ff textarea:focus{outline:none;border-color:var(--cel-dk)}
+.ff textarea{resize:none;min-height:64px}
+.ff select{appearance:none}
+.ctc-form{display:flex;flex-direction:column;gap:20px}
+.f-disc{font-size:11px;color:var(--ink-50);line-height:1.6}
+
+/* ── FOOTER ──────────────── */
+footer{background:var(--ink);padding:clamp(60px,8vw,100px) 0 34px}
+.ft-inner{max-width:1300px;margin:0 auto;padding:0 var(--pad)}
+.ft-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;
+  gap:48px;padding-bottom:clamp(48px,6vw,70px);border-bottom:1px solid rgba(255,255,255,.1)}
+.ft-logo{font-family:var(--f);font-weight:200;font-size:clamp(48px,10vw,120px);
+  letter-spacing:.05em;line-height:.88;color:#fff}
+.ft-logo .d{color:var(--cel)}
+.ft-cols{display:flex;gap:clamp(36px,5vw,70px);flex-wrap:wrap}
+.ftc{display:flex;flex-direction:column;gap:8px;min-width:120px}
+.ftc-h{font-family:var(--m);font-size:9px;letter-spacing:.24em;text-transform:uppercase;
+  color:rgba(255,255,255,.3);margin-bottom:4px}
+.ftc a,.ftc span{font-size:13px;color:rgba(255,255,255,.55);transition:color .3s}
+.ftc a:hover{color:#fff}
+.fb{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:22px;
+  font-family:var(--m);font-size:9px;letter-spacing:.14em;color:rgba(255,255,255,.28)}
+
+/* ── ABOUT US SECTION ──────────── */
+#about-us{background:var(--ink);color:#fff;position:relative}
+
+/* section header */
+.au-hd{
+  max-width:1300px;margin:0 auto;
+  padding:clamp(90px,12vw,160px) var(--pad) clamp(60px,8vw,100px);
+  display:grid;grid-template-columns:1fr .7fr;gap:clamp(40px,6vw,100px);align-items:end;
+  border-bottom:1px solid rgba(255,255,255,.1);
+}
+.au-label{font-family:var(--m);font-size:10px;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--cel);display:block;margin-bottom:18px}
+h2.au-h{font-family:var(--f);font-weight:200;
+  font-size:clamp(38px,5.8vw,86px);letter-spacing:-.022em;line-height:1.02;color:#fff}
+h2.au-h em{font-style:italic;color:rgba(255,255,255,.35)}
+.au-sub{font-size:clamp(13px,.95vw,15px);color:rgba(255,255,255,.5);
+  line-height:1.85;max-width:44ch}
+.au-stats{display:flex;flex-direction:column;gap:0;padding-left:clamp(28px,4vw,56px);
+  border-left:1px solid rgba(255,255,255,.1)}
+.au-stat{padding:18px 0;border-top:1px solid rgba(255,255,255,.1)}
+.au-stat:last-child{border-bottom:1px solid rgba(255,255,255,.1)}
+.au-sn{font-family:var(--f);font-weight:200;font-size:clamp(24px,2.8vw,40px);color:#fff}
+.au-sl{font-family:var(--m);font-size:9px;letter-spacing:.22em;
+  text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:5px}
+
+/* intro strip */
+.au-intro{
+  max-width:1300px;margin:0 auto;
+  padding:clamp(60px,8vw,110px) var(--pad);
+  display:grid;grid-template-columns:.42fr 1fr;gap:clamp(40px,6vw,100px);
+  align-items:center;border-bottom:1px solid rgba(255,255,255,.1);
+}
+.au-year-bg{font-family:var(--f);font-weight:200;
+  font-size:clamp(60px,11vw,150px);letter-spacing:-.03em;line-height:.92;
+  color:rgba(255,255,255,.06);user-select:none}
+.au-pull{font-family:var(--f);font-weight:200;font-style:italic;
+  font-size:clamp(19px,2vw,27px);line-height:1.45;color:rgba(255,255,255,.62);
+  margin-bottom:18px}
+.au-body{font-size:clamp(13px,.95vw,15px);color:rgba(255,255,255,.45);
+  line-height:1.85;max-width:52ch}
+
+/* scrollytelling grid */
+.au-story{
+  display:grid;grid-template-columns:300px 1fr;
+  max-width:1300px;margin:0 auto;
+}
+
+/* sticky left */
+.au-left{
+  position:sticky;top:0;height:100vh;
+  display:flex;flex-direction:column;justify-content:space-between;
+  padding:clamp(28px,4vw,48px) clamp(18px,2.5vw,36px);
+  border-right:1px solid rgba(255,255,255,.1);
+}
+.au-name{font-family:var(--m);font-size:9px;letter-spacing:.28em;
+  text-transform:uppercase;color:rgba(255,255,255,.28);line-height:1.7}
+.au-name strong{display:block;color:rgba(255,255,255,.55);margin-bottom:2px}
+.au-year-wrap{flex:1;display:flex;align-items:center;position:relative}
+.au-year{font-family:var(--f);font-weight:200;
+  font-size:clamp(64px,8.5vw,132px);letter-spacing:-.04em;line-height:1;
+  color:#fff;position:relative;z-index:1;min-width:3ch}
+.au-year-echo{position:absolute;left:-2px;top:3px;
+  font-family:var(--f);font-weight:200;
+  font-size:clamp(64px,8.5vw,132px);letter-spacing:-.04em;
+  color:rgba(255,255,255,.04);pointer-events:none}
+.au-desc{font-family:var(--m);font-size:9px;letter-spacing:.14em;
+  color:rgba(255,255,255,.35);line-height:1.7;min-height:3em;
+  transition:opacity .35s ease}
+/* dot timeline */
+.au-tl{position:relative;padding-left:15px;display:flex;flex-direction:column}
+.au-tl::before{content:"";position:absolute;left:6px;top:6px;bottom:6px;
+  width:1px;background:rgba(255,255,255,.1)}
+.au-fill{position:absolute;left:6px;top:6px;width:1px;
+  background:var(--cel);height:0%;transition:height .15s linear;z-index:1}
+.au-dot{position:relative;z-index:2;display:flex;align-items:center;gap:10px;padding:7px 0}
+.au-dot .d{width:8px;height:8px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.2);background:var(--ink);
+  margin-left:-3.5px;flex-shrink:0;
+  transition:background .4s,border-color .4s,transform .4s var(--ease)}
+.au-dot.on .d{background:var(--cel);border-color:var(--cel);transform:scale(1.3)}
+.au-dot .dl{font-family:var(--m);font-size:9px;letter-spacing:.16em;
+  text-transform:uppercase;color:rgba(255,255,255,.2);transition:color .4s}
+.au-dot.on .dl{color:var(--cel)}
+
+/* milestones */
+.au-ms{
+  min-height:100vh;display:flex;align-items:center;
+  padding:clamp(48px,7vw,88px) clamp(22px,4.5vw,64px);
+  border-bottom:1px solid rgba(255,255,255,.1);position:relative;
+}
+.au-ms:last-child{border-bottom:none}
+.au-ms::before{content:"";position:absolute;left:0;top:50%;
+  width:clamp(14px,2vw,28px);height:1px;
+  background:rgba(255,255,255,.1);transform:translateY(-50%)}
+.au-ms-in{display:flex;flex-direction:column;gap:clamp(16px,2.5vw,26px);max-width:580px}
+.au-ms-yr{font-family:var(--m);font-size:10px;letter-spacing:.3em;
+  text-transform:uppercase;color:var(--cel);
+  display:flex;align-items:center;gap:12px}
+.au-ms-yr::after{content:"";flex:1;max-width:44px;height:1px;background:var(--cel);opacity:.35}
+.au-ms-t{font-family:var(--f);font-weight:200;
+  font-size:clamp(28px,3.6vw,52px);letter-spacing:-.018em;line-height:1.06}
+.au-ms-t em{font-style:italic;color:rgba(255,255,255,.4)}
+.au-ms-b{font-size:clamp(13px,.9vw,14px);color:rgba(255,255,255,.45);
+  line-height:1.85;max-width:46ch}
+.au-ms-data{display:inline-flex;flex-direction:column;gap:3px;
+  padding:13px 18px;border:1px solid rgba(255,255,255,.1);
+  border-left:2px solid var(--cel);background:rgba(75,159,213,.05);border-radius:0 2px 2px 0}
+.au-ms-data .dk{font-family:var(--m);font-size:9px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--cel)}
+.au-ms-data .dv{font-family:var(--f);font-weight:200;font-size:clamp(16px,1.6vw,22px)}
+
+/* legacy milestone */
+.au-legacy{background:linear-gradient(135deg,rgba(75,159,213,.07) 0%,transparent 60%)}
+.au-legacy .au-ms-t{color:var(--cel)}
+
+/* reveal */
+.au-ms-yr,.au-ms-t,.au-ms-b,.au-ms-data{
+  opacity:0;transform:translateY(18px);
+  transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.au-ms-yr{transition-delay:.05s}.au-ms-t{transition-delay:.18s}
+.au-ms-b{transition-delay:.32s}.au-ms-data{transition-delay:.44s}
+.au-ms.in .au-ms-yr,.au-ms.in .au-ms-t,
+.au-ms.in .au-ms-b,.au-ms.in .au-ms-data{opacity:1;transform:none}
+
+/* bridge */
+.au-bridge{
+  max-width:1300px;margin:0 auto;
+  padding:clamp(80px,11vw,140px) var(--pad);
+  display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,100px);align-items:center;
+  border-top:1px solid rgba(255,255,255,.1);
+}
+.au-bq{font-family:var(--f);font-weight:200;font-style:italic;
+  font-size:clamp(20px,2.4vw,34px);line-height:1.38;color:rgba(255,255,255,.5)}
+.au-bq strong{font-style:normal;color:#fff}
+.au-bc{display:flex;flex-direction:column;gap:14px}
+.au-bc-label{font-family:var(--m);font-size:9px;letter-spacing:.3em;
+  text-transform:uppercase;color:var(--cel)}
+.au-bc-p{font-size:clamp(13px,.9vw,14px);color:rgba(255,255,255,.45);
+  line-height:1.85;max-width:100%}
+
+/* responsive */
+@media(max-width:1060px){
+  .au-hd{grid-template-columns:1fr}
+  .au-stats{border-left:none;border-top:1px solid rgba(255,255,255,.1);
+    padding-left:0;padding-top:24px;flex-direction:row;gap:0}
+  .au-stat{flex:1;border-top:none;padding:0 18px;border-right:1px solid rgba(255,255,255,.1)}
+  .au-stat:last-child{border-right:none;border-bottom:none}
+  .au-intro{grid-template-columns:1fr}.au-year-bg{display:none}
+  .au-story{grid-template-columns:1fr}
+  .au-left{position:relative;height:auto;border-right:none;
+    border-bottom:1px solid rgba(255,255,255,.1);
+    flex-direction:row;flex-wrap:wrap;align-items:center;gap:16px;
+    padding:20px var(--pad)}
+  .au-year,.au-year-echo{font-size:clamp(44px,10vw,68px)}
+  .au-tl,.au-desc{display:none}
+  .au-bridge{grid-template-columns:1fr}
+}
+@media(max-width:580px){
+  .au-stats{flex-direction:column;gap:0}
+  .au-stat{border-right:none;border-top:1px solid rgba(255,255,255,.1);padding:14px 0}
+  .au-ms{padding:36px 18px}
+}
+
+/* ── RESPONSIVE ──────────── */
+@media(max-width:1060px){
+  .nls,.ncta{display:none}.nbg{display:flex}
+  .ab-grid{grid-template-columns:1fr}.ab-img{aspect-ratio:3/2;max-height:380px}
+  .ap-head{grid-template-columns:1fr}.hub-wrap{display:none}.hub-mob{display:grid}
+  .srv-grid{grid-template-columns:1fr 1fr}
+  .j-steps{grid-template-columns:1fr 1fr}
+  .ury-content{grid-template-columns:1fr}
+  .who-top{grid-template-columns:1fr}.who-grid{grid-template-columns:1fr 1fr}
+  .net-grid{grid-template-columns:1fr 1fr}.ins-grid{grid-template-columns:1fr}
+  .ctc-grid{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  .srv-grid{grid-template-columns:1fr}.j-steps{grid-template-columns:1fr}
+  .who-grid{grid-template-columns:1fr}.hero-foot{grid-template-columns:1fr;gap:16px}
+  .ft-top{flex-direction:column}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:duration:.01ms!important}
+  .wi,.rv,.rv-u{opacity:1!important;transform:none!important}
+  .j-step,.hub-node-g,.hub-center-g,.spoke{opacity:1!important;transform:none!important;stroke-dashoffset:0!important}
+}
+</style>
+</head>
+<body>
+
+<div id="prog"></div>
+
+<!-- ══ NAV ══════════════════════════════════════════ -->
+<nav id="nav">
+  <a href="#hero" class="logo">AROCENA<span class="d">.</span></a>
+  <div class="nls">
+    <a href="#services">Services</a>
+    <a href="#journey">Journey</a>
+    <a href="#contact">Contact</a>
+    <a href="#about-us">About Us</a>
+  </div>
+  <a href="#contact" class="ncta">Private Conversation</a>
+  <button class="nbg" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+</nav>
+<div id="mob">
+  <a href="#services">Services</a>
+  <a href="#journey">Journey</a>
+  <a href="#contact">Contact</a>
+  <a href="#about-us">About Us</a>
+  <a href="#contact" class="mc">Private Conversation →</a>
+</div>
+
+<!-- ══ HERO ══ 100vh · photo · dark · giant type ═════ -->
+<section id="hero">
+  <div class="hero-bg">
+    <img id="heroBg"
+      src="https://images.unsplash.com/photo-1616959313137-186688889054?q=85&w=2800&auto=format&fit=crop"
+      alt="Punta del Este" onerror="this.style.opacity=0">
+  </div>
+  <div class="hero-scrim"></div>
+
+  <div class="hero-content">
+    <div class="hero-tag">
+      <span class="pulse"></span>
+      Real Estate Advisory · Argentina & Uruguay
+    </div>
+
+    <!-- THE HEADLINE — enormous, dominates everything -->
+    <h1 class="hero-h">
+      <span class="word"><span class="wi" style="animation-delay:.3s">Every </span></span><span class="word"><span class="wi" style="animation-delay:.5s">property.</span></span><br>
+      <span class="word"><span class="wi" style="animation-delay:.7s">One </span></span><span class="word"><span class="wi" style="animation-delay:.9s">advisor.</span></span><br>
+      <span class="word"><span class="wi it" style="animation-delay:1.1s">Your </span></span><span class="word"><span class="wi it" style="animation-delay:1.3s">side only.</span></span>
+    </h1>
+
+    <div class="hero-foot">
+      <p class="hero-sub">We search the full market, represent your interests, and guide every step — from first brief to final deed. Independent real estate advisory across Argentina and Uruguay.</p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn btn-w"><span>Begin your search</span><span class="ar">→</span></a>
+        <a href="#services" class="btn btn-o"><span>Our services</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TICKER ════════════════════════════════════════ -->
+<div class="ticker">
+  <div class="ticker-t">
+    <span class="ti"><span class="dot"></span>Personal Property Search</span>
+    <span class="ti"><span class="dot"></span>Argentina & Uruguay</span>
+    <span class="ti"><span class="dot"></span>100% Independent Advisory</span>
+    <span class="ti"><span class="dot"></span>Punta del Este · Buenos Aires</span>
+    <span class="ti"><span class="dot"></span>Your Interests Only</span>
+    <span class="ti"><span class="dot"></span>Off-Market Access</span>
+    <span class="ti"><span class="dot"></span>End-to-End Guidance</span>
+    <span class="ti"><span class="dot"></span>Personal Property Search</span>
+    <span class="ti"><span class="dot"></span>Argentina & Uruguay</span>
+    <span class="ti"><span class="dot"></span>100% Independent Advisory</span>
+    <span class="ti"><span class="dot"></span>Punta del Este · Buenos Aires</span>
+    <span class="ti"><span class="dot"></span>Your Interests Only</span>
+    <span class="ti"><span class="dot"></span>Off-Market Access</span>
+    <span class="ti"><span class="dot"></span>End-to-End Guidance</span>
+  </div>
+</div>
+
+<!-- ══ ABOUT ═════════════════════════════════════════ -->
+<section id="about">
+  <div class="ab-grid">
+    <div class="ab-img rv">
+      <img src="https://images.unsplash.com/photo-1691441799387-722f8cfaa1d9?q=80&w=2000&auto=format&fit=crop"
+        alt="Punta del Este" onerror="this.style.opacity=0">
+    </div>
+    <div class="ab-copy">
+      <span class="ab-label rv">About</span>
+      <h2 class="sec-h rv d1">Independent.<br>Dedicated.<br>Your side only.</h2>
+      <div class="bq rv d2">
+        <p>"We don't present properties at random. We search the full market and represent your interests — not the seller's."</p>
+      </div>
+      <p class="support rv d3">Arocena Advisors is an independent real estate advisory firm operating across Argentina and Uruguay. We do not maintain a fixed portfolio. We search the entire market and evaluate properties from developers, brokers, and private sellers alike — selecting only what is right for each client.</p>
+      <div class="pill-row rv d4">
+        <div class="pill">No exclusive portfolio. Full-market search.</div>
+        <div class="pill">Your interests defended at every stage.</div>
+        <div class="pill">Argentina and Uruguay. End to end.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ APPROACH ══════════════════════════════════════ -->
+<section id="approach">
+  <div class="ap-inner">
+    <div class="ap-head">
+      <div>
+        <span class="ab-label rv">Our Approach</span>
+        <h2 class="sec-h rv d1">Your search.<br>Our expertise.</h2>
+      </div>
+      <div class="rv d2">
+        <p class="support">We coordinate every specialist your search requires — independently and always on your side.</p>
+        <a href="#contact" class="link-a" style="margin-top:22px;display:inline-flex">Begin your search →</a>
+      </div>
+    </div>
+    <!-- Hub SVG -->
+    <div class="hub-wrap rv d2">
+      <svg class="hub-svg" viewBox="0 0 620 560" xmlns="http://www.w3.org/2000/svg" role="img">
+        <defs><style>
+          .hl{stroke:#C8D8E8;stroke-width:1;fill:none}
+          .nr{fill:var(--off,#F5F2EC);stroke:#C4D4E4;stroke-width:1}
+          .nl{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;fill:rgba(13,14,15,.5);text-anchor:middle;dominant-baseline:middle}
+          .cc{fill:var(--off,#F5F2EC);stroke:#2370A8;stroke-width:1.5}
+          .ct{font-family:'Fraunces',serif;font-size:17px;fill:#2370A8;text-anchor:middle;dominant-baseline:middle;font-weight:200}
+          .cs{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;fill:rgba(35,112,168,.5);text-anchor:middle;dominant-baseline:middle}
+        </style></defs>
+        <line class="hl spoke" x1="310" y1="244" x2="310" y2="112"/>
+        <line class="hl spoke" x1="347" y1="252" x2="462" y2="168"/>
+        <line class="hl spoke" x1="368" y1="280" x2="506" y2="280"/>
+        <line class="hl spoke" x1="347" y1="308" x2="462" y2="394"/>
+        <line class="hl spoke" x1="310" y1="318" x2="310" y2="448"/>
+        <line class="hl spoke" x1="273" y1="308" x2="158" y2="394"/>
+        <line class="hl spoke" x1="252" y1="280" x2="114" y2="280"/>
+        <line class="hl spoke" x1="273" y1="252" x2="158" y2="168"/>
+        <g class="hub-node-g"><rect class="nr" x="260" y="62" width="100" height="48" rx="3"/><text class="nl" x="310" y="86">Legal</text></g>
+        <g class="hub-node-g"><rect class="nr" x="424" y="94" width="100" height="48" rx="3"/><text class="nl" x="474" y="118">Tax</text></g>
+        <g class="hub-node-g"><rect class="nr" x="508" y="256" width="104" height="48" rx="3"/><text class="nl" x="560" y="280">Financing</text></g>
+        <g class="hub-node-g"><rect class="nr" x="424" y="418" width="104" height="48" rx="3"/><text class="nl" x="476" y="442">Real Estate</text></g>
+        <g class="hub-node-g"><rect class="nr" x="258" y="450" width="104" height="48" rx="3"/><text class="nl" x="310" y="474">Technical</text></g>
+        <g class="hub-node-g"><rect class="nr" x="8" y="418" width="104" height="48" rx="3"/><text class="nl" x="60" y="442">Investment</text></g>
+        <g class="hub-node-g"><rect class="nr" x="0" y="256" width="104" height="48" rx="3"/><text class="nl" x="52" y="280">Insurance</text></g>
+        <g class="hub-node-g"><rect class="nr" x="88" y="94" width="104" height="48" rx="3"/><text class="nl" x="140" y="118">Education</text></g>
+        <g class="hub-center-g">
+          <circle class="cc" cx="310" cy="280" r="70"/>
+          <text class="ct" x="310" y="273">The</text>
+          <text class="ct" x="310" y="293">Family</text>
+          <text class="cs" x="310" y="314">At the center</text>
+        </g>
+      </svg>
+    </div>
+    <div class="hub-mob">
+      <div class="hmc">⚖ <span>Legal</span></div><div class="hmc">📊 <span>Tax</span></div>
+      <div class="hmc">🏦 <span>Banking</span></div><div class="hmc">🏡 <span>Real Estate</span></div>
+      <div class="hmc">💼 <span>Corporate</span></div><div class="hmc">📈 <span>Investment</span></div>
+      <div class="hmc">🛡 <span>Insurance</span></div><div class="hmc">🎓 <span>Education</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SERVICES ══════════════════════════════════════ -->
+<section id="services">
+  <div class="srv-inner">
+    <div class="srv-top">
+      <div><span class="ab-label rv">Services</span><h2 class="sec-h rv d1">What we<br>coordinate.</h2></div>
+    </div>
+    <div class="srv-grid">
+      <div class="srv-c rv">
+        <div class="srv-num">01</div>
+        <h3>Personal<br>Property Search</h3>
+        <div class="srv-items">
+          <div class="srv-item">Market-wide search</div>
+          <div class="srv-item">Off-market access</div>
+          <div class="srv-item">Property identification</div>
+          <div class="srv-item">Visit coordination</div>
+        </div>
+      </div>
+      <div class="srv-c rv d1">
+        <div class="srv-num">02</div>
+        <h3>Independent<br>Evaluation</h3>
+        <div class="srv-items">
+          <div class="srv-item">Technical inspection</div>
+          <div class="srv-item">Legal title review</div>
+          <div class="srv-item">Comparable valuation</div>
+          <div class="srv-item">Risk assessment</div>
+        </div>
+      </div>
+      <div class="srv-c rv d2">
+        <div class="srv-num">03</div>
+        <h3>Cross-Border<br>Advisory</h3>
+        <div class="srv-items">
+          <div class="srv-item">Argentina & Uruguay</div>
+          <div class="srv-item">Tax & legal structure</div>
+          <div class="srv-item">IRNR / ARCA / DGI</div>
+          <div class="srv-item">Foreign buyer guidance</div>
+        </div>
+      </div>
+      <div class="srv-c rv d3">
+        <div class="srv-num">04</div>
+        <h3>Negotiation<br>&amp; Closing</h3>
+        <div class="srv-items">
+          <div class="srv-item">Price negotiation</div>
+          <div class="srv-item">Contract review</div>
+          <div class="srv-item">Escrituración support</div>
+          <div class="srv-item">Post-sale assistance</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ JOURNEY ═══════════════════════════════════════ -->
+<section id="journey">
+  <div class="jrn-inner">
+    <span class="ab-label rv" style="color:rgba(255,255,255,.35)">Client Journey</span>
+    <h2 class="sec-h jrn-h rv d1" style="margin-top:14px">How we find<br><em>your property.</em></h2>
+  </div>
+  <div class="j-steps" id="jSteps">
+    <div class="j-step">
+      <span class="jn">01 — Define</span>
+      <div class="jt">Define<br>your objectives.</div>
+      <p class="jp">Before searching, we understand exactly what you need: personal use, investment, rental yield, capital preservation, or portfolio diversification.</p>
+      <div class="j-items">
+        <div class="j-li">Personal or investment use</div>
+        <div class="j-li">Location priorities</div>
+        <div class="j-li">Budget & timeline</div>
+      </div>
+    </div>
+    <div class="j-step">
+      <span class="jn">02 — Search</span>
+      <div class="jt">Strategic<br>full-market search.</div>
+      <p class="jp">We actively search the full market — published listings, off-market opportunities, developer projects and private sellers — filtering by your criteria.</p>
+      <div class="j-items">
+        <div class="j-li">Full market coverage</div>
+        <div class="j-li">Off-market access</div>
+        <div class="j-li">Curated shortlist</div>
+      </div>
+    </div>
+    <div class="j-step">
+      <span class="jn">03 — Evaluate</span>
+      <div class="jt">Independent<br>evaluation.</div>
+      <p class="jp">We assess each property for legal title, physical condition, comparable value, tax implications and risk — coordinating architects, lawyers and accountants as needed.</p>
+      <div class="j-items">
+        <div class="j-li">Legal & technical review</div>
+        <div class="j-li">Independent valuation</div>
+        <div class="j-li">Risk assessment</div>
+      </div>
+    </div>
+    <div class="j-step">
+      <span class="jn">04 — Close</span>
+      <div class="jt">Negotiate<br>and close.</div>
+      <p class="jp">We negotiate on your behalf to obtain the best possible terms, then accompany you through contract, escrituración and post-sale — including any ongoing management needs.</p>
+      <div class="j-items">
+        <div class="j-li">Price negotiation</div>
+        <div class="j-li">Contract & deeds</div>
+        <div class="j-li">Post-sale support</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ URUGUAY — full bleed photo ════════════════════ -->
+<section id="uruguay">
+  <div class="ury-bg">
+    <img id="uryBg"
+      src="https://images.unsplash.com/photo-1692278069387-a5645520a4d4?q=80&w=2400&auto=format&fit=crop"
+      alt="Punta del Este coast" onerror="this.style.opacity=0">
+  </div>
+  <div class="ury-scrim"></div>
+  <div class="ury-content">
+    <div class="ury-left">
+      <span class="ury-label rv">Why Uruguay</span>
+      <h2 class="ury-h rv d1">Punta del Este.<br>José Ignacio.<br>Uruguay.</h2>
+      <a href="#contact" class="btn btn-w rv d2" style="align-self:flex-start"><span>Learn More</span><span class="ar">→</span></a>
+    </div>
+    <div class="ury-right rv d2">
+      <div class="ury-r"><span class="ury-ri">01</span><span class="ury-rt">Punta del Este · José Ignacio · Colonia</span></div>
+      <div class="ury-r"><span class="ury-ri">02</span><span class="ury-rt">Residential, luxury and off-plan projects</span></div>
+      <div class="ury-r"><span class="ury-ri">03</span><span class="ury-rt">Rural properties and campos</span></div>
+      <div class="ury-r"><span class="ury-ri">04</span><span class="ury-rt">Foreign buyer legal & tax guidance</span></div>
+      <div class="ury-r"><span class="ury-ri">05</span><span class="ury-rt">Montevideo · high-quality coastal lifestyle</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WHO ════════════════════════════════════════════ -->
+<section id="who">
+  <div class="who-inner">
+    <div class="who-top">
+      <div><span class="ab-label rv">Who We Serve</span><h2 class="sec-h rv d1">Who we<br>work with.</h2></div>
+      <p class="support rv d2">Whether you are buying for personal use, investing, or diversifying across borders — we adapt to your objectives.</p>
+    </div>
+    <div class="who-grid rv d2">
+      <div class="who-c"><h3>International<br>Investors</h3><span class="who-sub">Capital deployment in AR & UY</span></div>
+      <div class="who-c"><h3>Personal Use<br>Buyers</h3><span class="who-sub">Primary residence or vacation home</span></div>
+      <div class="who-c"><h3>Portfolio<br>Diversifiers</h3><span class="who-sub">Cross-border real estate strategy</span></div>
+      <div class="who-c"><h3>Argentine &amp;<br>Brazilian Families</h3><span class="who-sub">Local expertise without guesswork</span></div>
+      <div class="who-c"><h3>Rural &amp; Campo<br>Buyers</h3><span class="who-sub">Productive and recreational land</span></div>
+      <div class="who-c"><h3>Relocating<br>Families</h3><span class="who-sub">Settlement support in the region</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TEAM ═════════════════════════════════════════ -->
+<section id="team" style="background:var(--cel-bg)">
+  <div style="max-width:1300px;margin:0 auto;padding:clamp(90px,12vw,160px) var(--pad)">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;border-bottom:1px solid var(--ink-15);padding-bottom:clamp(36px,4vw,52px);margin-bottom:0">
+      <div><span class="ab-label rv">The Team</span><h2 class="sec-h rv d1">The people<br>behind your search.</h2></div>
+      <p class="support rv d2" style="max-width:38ch">A family firm. Every member brings deep local knowledge, independence and a network built over decades.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ink-15)" class="rv d2">
+
+      <div style="background:var(--cel-bg);padding:clamp(28px,3.5vw,44px) clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:10px;transition:background .35s;position:relative;overflow:hidden" onmouseenter="this.style.background='#dceef9'" onmouseleave="this.style.background=''">
+        <span style="font-family:var(--f);font-weight:200;font-size:clamp(19px,2vw,26px);line-height:1.1">Juan Pedro<br>Arocena</span>
+        <span style="font-family:var(--m);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--cel-dk)">Network & Markets</span>
+        <p style="font-size:13px;color:var(--ink-50);line-height:1.75;max-width:100%">Extensive network across Argentina and Uruguay. Deep expertise in high-end residential and rural/agricultural property markets.</p>
+      </div>
+
+      <div style="background:var(--cel-bg);padding:clamp(28px,3.5vw,44px) clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:10px;transition:background .35s" onmouseenter="this.style.background='#dceef9'" onmouseleave="this.style.background=''">
+        <span style="font-family:var(--f);font-weight:200;font-size:clamp(19px,2vw,26px);line-height:1.1">Juan Martín<br>Arocena</span>
+        <span style="font-family:var(--m);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--cel-dk)">Legal & Cross-Border</span>
+        <p style="font-size:13px;color:var(--ink-50);line-height:1.75;max-width:100%">Coordinates the legal, tax and regulatory framework for every operation — from initial analysis to escrituración and post-sale, across both countries.</p>
+      </div>
+
+      <div style="background:var(--cel-bg);padding:clamp(28px,3.5vw,44px) clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:10px;transition:background .35s" onmouseenter="this.style.background='#dceef9'" onmouseleave="this.style.background=''">
+        <span style="font-family:var(--f);font-weight:200;font-size:clamp(19px,2vw,26px);line-height:1.1">Nicolás<br>Arocena</span>
+        <span style="font-family:var(--m);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--cel-dk)">Personal Shopper</span>
+        <p style="font-size:13px;color:var(--ink-50);line-height:1.75;max-width:100%">Leads property search, evaluation and selection. Particularly skilled at negotiation — identifying the right property and obtaining the right terms on your behalf.</p>
+        <p style="font-family:var(--f);font-style:italic;font-size:13px;color:var(--cel-dk);line-height:1.6;margin-top:4px;max-width:100%">"We identify your needs precisely, search strategically, and accompany you through every stage."</p>
+      </div>
+
+      <div style="background:var(--cel-bg);padding:clamp(28px,3.5vw,44px) clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:10px;transition:background .35s" onmouseenter="this.style.background='#dceef9'" onmouseleave="this.style.background=''">
+        <span style="font-family:var(--f);font-weight:200;font-size:clamp(19px,2vw,26px);line-height:1.1">Miguel<br>Arocena</span>
+        <span style="font-family:var(--m);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--cel-dk)">Punta del Este</span>
+        <p style="font-size:13px;color:var(--ink-50);line-height:1.75;max-width:100%">Deep knowledge of Punta del Este and José Ignacio. His network in development and construction gives access to relevant opportunities — often before they reach the market.</p>
+      </div>
+
+      <div style="background:var(--cel-bg);padding:clamp(28px,3.5vw,44px) clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:10px;transition:background .35s" onmouseenter="this.style.background='#dceef9'" onmouseleave="this.style.background=''">
+        <span style="font-family:var(--f);font-weight:200;font-size:clamp(19px,2vw,26px);line-height:1.1">Consuelo<br>Milberg</span>
+        <span style="font-family:var(--m);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--cel-dk)">Rural & Campo</span>
+        <p style="font-size:13px;color:var(--ink-50);line-height:1.75;max-width:100%">Connected to the agricultural sector from birth. Specialises in campo identification and valuation across Argentina and Uruguay — including satellite imagery, soil and water table analysis coordinated with trusted agronomists.</p>
+      </div>
+
+      <div style="background:var(--cel-bg);padding:clamp(28px,3.5vw,44px) clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:10px;transition:background .35s" onmouseenter="this.style.background='#dceef9'" onmouseleave="this.style.background=''">
+        <span style="font-family:var(--f);font-weight:200;font-size:clamp(19px,2vw,26px);line-height:1.1">Consuelo<br>Arocena</span>
+        <span style="font-family:var(--m);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--cel-dk)">Local Integration</span>
+        <p style="font-size:13px;color:var(--ink-50);line-height:1.75;max-width:100%">Accompanies clients relocating or spending extended time in the region — providing access to local professionals, services and the contacts needed to settle into personal and family life.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ NETWORK ════════════════════════════════════════ -->
+<section id="network">
+  <div class="net-inner">
+    <div class="net-top">
+      <div><span class="ab-label rv">Our Network</span><h2 class="sec-h rv d1">The specialists<br>behind each deal.</h2></div>
+      <p class="support rv d2" style="max-width:36ch">For each operation we coordinate the right professionals — legal, technical, and financial — always in your interest.</p>
+    </div>
+    <div class="net-grid rv d2">
+      <div class="net-c"><div class="ni-icon">⚖</div><h4>Lawyers &<br>Notaries</h4></div>
+      <div class="net-c"><div class="ni-icon">📊</div><h4>Tax &<br>Accountants</h4></div>
+      <div class="net-c"><div class="ni-icon">🏗</div><h4>Architects &<br>Engineers</h4></div>
+      <div class="net-c"><div class="ni-icon">🏦</div><h4>Mortgage &<br>Financing</h4></div>
+      <div class="net-c"><div class="ni-icon">🌾</div><h4>Agronomists<br>(campos)</h4></div>
+      <div class="net-c"><div class="ni-icon">🌍</div><h4>Immigration<br>Advisors</h4></div>
+      <div class="net-c"><div class="ni-icon">🔍</div><h4>Title &<br>Due Diligence</h4></div>
+      <div class="net-c"><div class="ni-icon">🏠</div><h4>Property<br>Management</h4></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ INSIGHTS ═══════════════════════════════════════ -->
+<section id="insights">
+  <div class="ins-inner">
+    <div class="ins-top">
+      <div><span class="ab-label rv">Insights</span><h2 class="sec-h rv d1">Perspectives on<br>wealth &amp; legacy.</h2></div>
+      <a href="#" class="link-a rv d2">All insights →</a>
+    </div>
+    <div class="ins-grid rv d2">
+      <div class="ins-c">
+        <span class="ins-tag">Uruguay Market</span>
+        <div class="ins-t">Buying Property in Uruguay: What International Buyers Need to Know</div>
+        <div class="ins-foot"><span class="ins-date">June 2025</span><span class="link-a" style="font-size:10px">Read →</span></div>
+      </div>
+      <div class="ins-c">
+        <span class="ins-tag">Argentina Market</span>
+        <div class="ins-t">Argentina Real Estate: Off-Market Opportunities and How to Access Them</div>
+        <div class="ins-foot"><span class="ins-date">May 2025</span><span class="link-a" style="font-size:10px">Read →</span></div>
+      </div>
+      <div class="ins-c">
+        <span class="ins-tag">Rural Properties</span>
+        <div class="ins-t">Campos and Rural Land: Evaluating Productive Properties in the Pampas</div>
+        <div class="ins-foot"><span class="ins-date">April 2025</span><span class="link-a" style="font-size:10px">Read →</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ABOUT US ═══════════════════════════════════════ -->
+<section id="about-us">
+
+  <!-- Header -->
+  <div class="au-hd">
+    <div>
+      <span class="au-label">Our Story</span>
+      <h2 class="au-h">A family shaped<br>by land, architecture<br><em>and vision.</em></h2>
+      <p class="au-sub" style="margin-top:20px">Our relationship with land and exceptional properties did not begin with our advisory work. It is part of our family history — connecting us to those who helped shape Argentina and Uruguay as we know them today.</p>
+    </div>
+    <div class="au-stats">
+      <div class="au-stat"><div class="au-sn">1907</div><div class="au-sl">Year of the founding vision</div></div>
+      <div class="au-stat"><div class="au-sn">28</div><div class="au-sl">Years leading the Caja Obrera</div></div>
+      <div class="au-stat"><div class="au-sn">100+</div><div class="au-sl">Years defining Carrasco</div></div>
+    </div>
+  </div>
+
+  <!-- Intro -->
+  <div class="au-intro">
+    <div class="au-year-bg">1869<br>—<br>1947</div>
+    <div>
+      <p class="au-pull">"He transformed a coastline of dunes into one of South America's most exclusive neighborhoods."</p>
+      <p class="au-body">Alfredo Arocena was a lawyer, entrepreneur, banker and politician. His most enduring achievement was neither legal nor financial — it was urban. He saw what Carrasco could become long before anyone else, and he built it anyway.</p>
+      <p class="au-body" style="margin-top:14px">The name of this firm is not incidental. It is intentional. We work the way he worked: with patience, with a long horizon, and absolute conviction in what we are building.</p>
+    </div>
+  </div>
+
+  <!-- Scrollytelling -->
+  <div class="au-story">
+
+    <!-- Sticky left -->
+    <div class="au-left" id="auLeft">
+      <div class="au-name"><strong>Alfredo Arocena</strong>Founder of Carrasco</div>
+      <div class="au-year-wrap">
+        <div class="au-year-echo" id="auEcho">1869</div>
+        <div class="au-year" id="auYear">1869</div>
+      </div>
+      <div class="au-desc" id="auDesc">Born in Uruguay.</div>
+      <div class="au-tl">
+        <div class="au-fill" id="auFill"></div>
+        <div class="au-dot on" data-ai="0"><div class="d"></div><span class="dl">1869</span></div>
+        <div class="au-dot"    data-ai="1"><div class="d"></div><span class="dl">1905</span></div>
+        <div class="au-dot"    data-ai="2"><div class="d"></div><span class="dl">1907</span></div>
+        <div class="au-dot"    data-ai="3"><div class="d"></div><span class="dl">1912</span></div>
+        <div class="au-dot"    data-ai="4"><div class="d"></div><span class="dl">1921</span></div>
+        <div class="au-dot"    data-ai="5"><div class="d"></div><span class="dl">Legacy</span></div>
+      </div>
+    </div>
+
+    <!-- Milestones -->
+    <div>
+      <div class="au-ms" data-ayear="1869" data-adesc="Born in Uruguay." data-ai="0">
+        <div class="au-ms-in">
+          <div class="au-ms-yr">1869</div>
+          <div class="au-ms-t">The man behind<br>the neighborhood.</div>
+          <p class="au-ms-b">Alfredo Arocena is born in Uruguay. A lawyer by training, his greatest legacy will be neither legal nor financial — it will be urban. He will spend his life building institutions, and one neighborhood, that outlast him by a century.</p>
+        </div>
+      </div>
+      <div class="au-ms" data-ayear="1905" data-adesc="Founds the Banco de la Caja Obrera." data-ai="1">
+        <div class="au-ms-in">
+          <div class="au-ms-yr">1905</div>
+          <div class="au-ms-t">An institution built<br><em>for the long term.</em></div>
+          <p class="au-ms-b">He founds the Banco de la Caja Obrera. He will lead it for nearly three decades — a demonstration of his ability to sustain projects across time. The same patience he will later bring to Carrasco.</p>
+          <div class="au-ms-data"><span class="dk">Years at the helm</span><span class="dv">28 years</span></div>
+        </div>
+      </div>
+      <div class="au-ms" data-ayear="1907" data-adesc="Purchases the land on the eastern coast." data-ai="2">
+        <div class="au-ms-in">
+          <div class="au-ms-yr">1907</div>
+          <div class="au-ms-t">An undeveloped<br><em>coastline.</em></div>
+          <p class="au-ms-b">He purchases a vast expanse of land on Montevideo's eastern coast. Dunes, marshland, open shore. Where others see nothing, Arocena sees the future. His model: Ostende, Belgium.</p>
+          <div class="au-ms-data"><span class="dk">Reference</span><span class="dv">Ostende, Belgium</span></div>
+        </div>
+      </div>
+      <div class="au-ms" data-ayear="1912" data-adesc="Founds Balneario Carrasco. Carlos Thays designs the neighborhood." data-ai="3">
+        <div class="au-ms-in">
+          <div class="au-ms-yr">1912</div>
+          <div class="au-ms-t">Carlos Thays<br>and the garden city.</div>
+          <p class="au-ms-b">He founds the Balneario Carrasco Company with Esteban Elena and José Ordeig. He commissions French landscape architect Carlos Thays to design the neighborhood: curved avenues, green space, urban logic unprecedented in Uruguay. Construction of the Hotel begins the same year.</p>
+          <div class="au-ms-data"><span class="dk">Urban designer</span><span class="dv">Carlos Thays · Paris</span></div>
+        </div>
+      </div>
+      <div class="au-ms" data-ayear="1921" data-adesc="The Hotel Casino Carrasco opens." data-ai="4">
+        <div class="au-ms-in">
+          <div class="au-ms-yr">1921</div>
+          <div class="au-ms-t">The most ambitious<br>hotel in South America.</div>
+          <p class="au-ms-b">The First World War interrupts construction between 1914 and 1918. Arocena does not abandon the project. In 1921, the Hotel Casino Carrasco opens. Today it operates as the Sofitel Montevideo Casino Carrasco & Spa.</p>
+          <div class="au-ms-data"><span class="dk">Today</span><span class="dv">Sofitel Montevideo</span></div>
+        </div>
+      </div>
+      <div class="au-ms au-legacy" data-ayear="HOY" data-adesc="From dunes to Carrasco." data-ai="5">
+        <div class="au-ms-in">
+          <div class="au-ms-yr">Legacy</div>
+          <div class="au-ms-t">From dunes<br>to Carrasco.</div>
+          <p class="au-ms-b">Arocena transformed a shapeless coast into Uruguay's most exclusive residential neighborhood. His urban planning continues to define Carrasco more than a century later. The neighborhood bears the name of its colonial landowner — but its soul has a different name.</p>
+          <div class="au-ms-data"><span class="dk">The avenue that carries his name</span><span class="dv">Avenida Arocena</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bridge -->
+  <div class="au-bridge">
+    <div class="au-bq">"Our relationship with land, properties and exceptional places is part of our <strong>family history — not just our business.</strong>"</div>
+    <div class="au-bc">
+      <span class="au-bc-label">Why we do what we do</span>
+      <p class="au-bc-p">For generations, our family has understood land and architecture not merely as assets, but as places that gather families, create identity and build a shared story. Fields and homes have been meeting places — and a source of stability across generations.</p>
+      <p class="au-bc-p">The true family legacy does not reside in the properties themselves, but in the values our ancestors sought to pass down. Today, we bring that same long-term perspective to every search, evaluation and negotiation we undertake on your behalf.</p>
+    </div>
+  </div>
+
+</section>
+
+<!-- ══ CONTACT ════════════════════════════════════════ -->
+<section id="contact">
+  <div class="ctc-inner">
+    <div class="ctc-grid">
+      <div class="ctc-copy">
+        <span class="ab-label rv">Contact</span>
+        <h2 class="sec-h rv d1">Start your<br>search.</h2>
+        <p class="support rv d2">Tell us what you are looking for. We will assess the market and come back to you with an honest picture of what is available and what it is truly worth.</p>
+        <div class="ctc-meta rv d3">
+          <div class="cm"><span class="cml">Location</span><span class="cmv">San Isidro, Buenos Aires · Punta del Este</span></div>
+          <div class="cm"><span class="cml">Contact</span><span class="cmv">By appointment only</span></div>
+        </div>
+      </div>
+      <div class="ctc-form">
+        <div class="ff rv"><label class="fl">Full name</label><input type="text" placeholder="Your name"></div>
+        <div class="ff rv d1"><label class="fl">Email</label><input type="email" placeholder="your@email.com"></div>
+        <div class="ff rv d2"><label class="fl">Country</label><input type="text" placeholder="Argentina, Brazil, USA…"></div>
+        <div class="ff rv d3">
+          <label class="fl">How can we help</label>
+          <select>
+            <option value="" disabled selected>Select a topic</option>
+            <option>Family Office Advisory</option><option>Relocation to Uruguay</option>
+            <option>Wealth Coordination</option><option>Family Governance</option>
+            <option>Succession Planning</option><option>Cross-Border Structuring</option>
+          </select>
+        </div>
+        <div class="ff rv d4"><label class="fl">Message (optional)</label><textarea placeholder="A brief description of your situation"></textarea></div>
+        <p class="f-disc rv d4">All conversations are held in strict confidence.</p>
+        <button class="btn btn-cel rv d4" style="align-self:flex-start;margin-top:4px"
+          onclick="this.querySelector('span').textContent='Message received';this.disabled=true">
+          <span>Send Message</span><span class="ar">→</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ═════════════════════════════════════════ -->
+<footer>
+  <div class="ft-inner">
+    <div class="ft-top">
+      <div class="ft-logo">AROC<br>ENA<span class="d">.</span></div>
+      <div class="ft-cols">
+        <div class="ftc">
+          <span class="ftc-h">The Office</span>
+          <a href="#about">About</a><a href="#approach">Approach</a>
+          <a href="#services">Services</a><a href="#journey">Journey</a>
+        </div>
+        <div class="ftc">
+          <span class="ftc-h">Explore</span>
+          <a href="#uruguay">Uruguay</a><a href="#who">Who We Serve</a>
+          <a href="#network">Network</a><a href="#insights">Insights</a>
+        </div>
+        <div class="ftc">
+          <span class="ftc-h">Contact</span>
+          <a href="#contact">Private Conversation</a>
+          <span>Punta del Este, UY</span><span>By appointment</span>
+        </div>
+        <div class="ftc">
+          <span class="ftc-h">Language</span>
+          <a href="#">English</a><a href="#">Español</a><a href="#">Português</a>
+        </div>
+      </div>
+    </div>
+    <div class="fb">
+      <span>© <span id="yr"></span> Arocena Advisors — Real Estate Advisory</span>
+      <span>Argentina & Uruguay · Independent Advisory</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+document.body.classList.add('js');
+
+/* ── PROGRESS ── */
+const prog = document.getElementById('prog');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement.scrollHeight - window.innerHeight;
+  prog.style.width = (window.scrollY / h * 100) + '%';
+}, {passive:true});
+
+/* ── NAV ── */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('lit', window.scrollY > window.innerHeight * .85), {passive:true});
+
+/* ── MOBILE ── */
+const burger = document.getElementById('burger');
+const mob = document.getElementById('mob');
+const bsp = burger.querySelectorAll('span');
+function toggleMob(o) {
+  mob.classList.toggle('open', o);
+  burger.setAttribute('aria-expanded', o);
+  bsp[0].style.transform = o ? 'rotate(45deg) translate(4px,4px)' : '';
+  bsp[1].style.transform = o ? 'rotate(-45deg) translate(3px,-3px)' : '';
+}
+burger.addEventListener('click', () => toggleMob(!mob.classList.contains('open')));
+mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggleMob(false)));
+window.addEventListener('resize', () => { if (window.innerWidth > 1060) toggleMob(false); });
+
+/* ── REVEAL ── */
+const io = new IntersectionObserver(entries =>
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }),
+  {threshold: 0.05, rootMargin: '0px 0px 60px 0px'});
+document.querySelectorAll('.rv,.rv-u').forEach(el => io.observe(el));
+setTimeout(() => document.querySelectorAll('.rv:not(.in),.rv-u:not(.in)').forEach(el => el.classList.add('in')), 500);
+
+/* ── HUB ── */
+const hubIO = new IntersectionObserver(([e]) => { if (e.isIntersecting) { e.target.classList.add('in'); hubIO.disconnect(); } }, {threshold:.25});
+const hub = document.querySelector('.hub-wrap');
+if (hub) hubIO.observe(hub);
+
+/* ── JOURNEY CASCADE ── */
+const jIO = new IntersectionObserver(([e]) => { if (e.isIntersecting) { e.target.classList.add('in'); jIO.disconnect(); } }, {threshold:.12});
+const jst = document.getElementById('jSteps');
+if (jst) jIO.observe(jst);
+
+/* ── HERO PARALLAX ── */
+const heroBg = document.getElementById('heroBg');
+window.addEventListener('scroll', () => {
+  if (window.scrollY < window.innerHeight * 1.5)
+    heroBg.style.transform = `translateY(${window.scrollY * 0.35}px)`;
+}, {passive:true});
+
+/* ── URUGUAY PARALLAX ── */
+const uryBg = document.getElementById('uryBg');
+if (uryBg) {
+  window.addEventListener('scroll', () => {
+    const el = uryBg.parentElement;
+    const r = el.getBoundingClientRect();
+    if (r.bottom > 0 && r.top < window.innerHeight) {
+      const p = (window.innerHeight - r.top) / (window.innerHeight + r.height);
+      uryBg.style.transform = `translateY(${(p - .5) * -50}px)`;
+    }
+  }, {passive:true});
+}
+
+/* ── ABOUT US SCROLLYTELLING ── */
+(function() {
+  const auYear  = document.getElementById('auYear');
+  const auEcho  = document.getElementById('auEcho');
+  const auDesc  = document.getElementById('auDesc');
+  const auFill  = document.getElementById('auFill');
+  const auDots  = document.querySelectorAll('.au-dot');
+  const auMSs   = document.querySelectorAll('.au-ms');
+  if (!auYear) return;
+
+  let curY = 1869, raf2;
+
+  function animY(to) {
+    if (to === 'HOY') { auYear.textContent = 'NOW'; auEcho.textContent = 'NOW'; return; }
+    const from = (typeof curY === 'number') ? curY : 1921;
+    const toN  = parseInt(to);
+    if (isNaN(toN) || toN === from) return;
+    const dur = Math.min(700, Math.abs(toN - from) * 3.5);
+    const t0  = performance.now();
+    cancelAnimationFrame(raf2);
+    (function tick(now) {
+      const p = Math.min(1, (now - t0) / dur);
+      const v = Math.round(from + (toN - from) * (1 - Math.pow(1 - p, 3)));
+      auYear.textContent = v; auEcho.textContent = v;
+      if (p < 1) raf2 = requestAnimationFrame(tick); else curY = toN;
+    })(t0);
+  }
+
+  function setAU(idx, year, desc) {
+    animY(year);
+    auDesc.style.opacity = '0';
+    setTimeout(() => { auDesc.textContent = desc; auDesc.style.opacity = '1'; }, 200);
+    auDots.forEach((d, i) => d.classList.toggle('on', i === idx));
+    auFill.style.height = (auDots.length > 1 ? (idx / (auDots.length - 1)) * 100 : 0) + '%';
+  }
+
+  const auIO = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        setAU(+e.target.dataset.ai, e.target.dataset.ayear, e.target.dataset.adesc);
+      }
+    });
+  }, { threshold: 0.35, rootMargin: '0px 0px -18% 0px' });
+
+  auMSs.forEach(m => auIO.observe(m));
+  setTimeout(() => auMSs.forEach(m => m.classList.add('in')), 600);
+  setAU(0, '1869', 'Born in Uruguay.');
+})();
+
+const sects = document.querySelectorAll('section[id]');
+const nls = document.querySelectorAll('.nls a');
+new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      nls.forEach(l => l.classList.remove('on'));
+      const a = document.querySelector(`.nls a[href="#${e.target.id}"]`);
+      if (a) a.classList.add('on');
+    }
+  });
+}, {rootMargin: '-36% 0px -36% 0px'}).observe
+  ? (() => {
+      const sio = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            nls.forEach(l => l.classList.remove('on'));
+            const a = document.querySelector(`.nls a[href="#${e.target.id}"]`);
+            if (a) a.classList.add('on');
+          }
+        });
+      }, {rootMargin: '-36% 0px -36% 0px'});
+      sects.forEach(s => sio.observe(s));
+    })() : null;
+</script>
+</body>
+</html>
