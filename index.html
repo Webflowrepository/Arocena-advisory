@@ -3,7 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arocena Advisors — Real Estate Advisory · Argentina & Uruguay</title>
+<title>Arocena Advisors — Your personal shopper · Argentina & Uruguay</title>
+<meta name="description" content="Independent real estate advisory across Argentina and Uruguay. We search the full market and represent your interests — not the seller's.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.arocena-advisory.com/">
+<meta property="og:title" content="Arocena Advisors — Your personal shopper · Argentina & Uruguay">
+<meta property="og:description" content="Independent real estate advisory across Argentina and Uruguay. We search the full market and represent your interests — not the seller's.">
+<meta property="og:image" content="https://www.arocena-advisory.com/arocen%20alogo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Arocena Advisors — Your personal shopper · Argentina & Uruguay">
+<meta name="twitter:description" content="Independent real estate advisory across Argentina and Uruguay. We search the full market and represent your interests — not the seller's.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;1,9..144,200;1,9..144,300&family=Schibsted+Grotesk:wght@400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
@@ -102,12 +111,24 @@ img{display:block;width:100%;height:100%;object-fit:cover}
 /* content above scrim */
 .hero-content{position:relative;z-index:2;display:flex;flex-direction:column;gap:0}
 .hero-tag{
-  font-family:var(--m);font-size:10px;letter-spacing:.3em;
-  text-transform:uppercase;color:rgba(255,255,255,.55);
-  display:flex;align-items:center;gap:12px;margin-bottom:clamp(16px,2.5vw,28px);
+  display:flex;flex-direction:column;gap:6px;
+  margin-bottom:clamp(18px,3vw,34px);
   opacity:0;animation:fadeUp .7s var(--ease) .2s forwards;
 }
-.hero-tag .pulse{width:5px;height:5px;border-radius:50%;background:var(--cel);flex-shrink:0;
+.hero-tag-line1{
+  display:flex;align-items:center;gap:14px;
+  font-family:var(--f);font-weight:200;font-style:italic;
+  font-size:clamp(16px,1.8vw,24px);
+  letter-spacing:.04em;color:rgba(255,255,255,.92);
+  line-height:1;
+}
+.hero-tag-line2{
+  font-family:var(--m);font-size:clamp(10px,0.9vw,13px);
+  letter-spacing:.35em;text-transform:uppercase;
+  color:rgba(255,255,255,.55);
+  padding-left:22px;
+}
+.hero-tag .pulse{width:7px;height:7px;border-radius:50%;background:var(--cel);flex-shrink:0;
   animation:blink 2.4s ease infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 
@@ -612,9 +633,8 @@ h2.au-h em{font-style:italic;color:rgba(255,255,255,.35)}
 
 <!-- ══ NAV ══════════════════════════════════════════ -->
 <nav id="nav">
-  <a href="#hero" class="logo" style="display:flex;align-items:center;gap:10px">
-    <img src="arocen%20alogo.png" alt="Arocena" class="logo-img" style="height:34px;width:auto;display:block;filter:brightness(0) invert(1);transition:filter .4s">
-    <span style="font-family:var(--f);font-weight:200;font-size:15px;letter-spacing:.38em">AROCENA<span class="d">.</span></span>
+  <a href="#hero" class="logo" style="display:flex;align-items:center">
+    <img src="arocen%20alogo.png" alt="Arocena Advisory" class="logo-img" style="height:44px;width:auto;display:block;filter:brightness(0) invert(1);transition:filter .4s">
   </a>
   <div class="nls">
     <a href="#journey">How We Work</a>
@@ -646,8 +666,8 @@ h2.au-h em{font-style:italic;color:rgba(255,255,255,.35)}
 
   <div class="hero-content">
     <div class="hero-tag">
-      <span class="pulse"></span>
-      Your personal shopper · Argentina & Uruguay
+      <div class="hero-tag-line1"><span class="pulse"></span>Your personal shopper</div>
+      <div class="hero-tag-line2">Argentina &amp; Uruguay</div>
     </div>
 
     <!-- THE HEADLINE — enormous, dominates everything -->
@@ -835,48 +855,48 @@ h2.au-h em{font-style:italic;color:rgba(255,255,255,.35)}
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ink-15)" class="rv d2">
 
       <!-- 1: Consuelo Milberg -->
-      <div style="background:var(--cel-bg);padding:clamp(28px,3.5vw,44px) clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:10px;transition:background .35s" onmouseenter="this.style.background='#dceef9'" onmouseleave="this.style.background=''">
-        <div style="width:100%;aspect-ratio:4/5;border-radius:2px;overflow:hidden;background:#d0dde6;margin-bottom:4px"><img src="images/team/consuelo%20milbverg.png" alt="Consuelo Milberg" onerror="this.style.opacity=0" style="width:100%;height:100%;object-fit:cover;object-position:center 15%"></div>
+      <div style="background:var(--cel-bg);padding:clamp(28px,3.5vw,44px) clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:10px;transition:background .35s" onmouseenter="this.style.background='#dceef9'" onmouseleave="this.style.background='var(--cel-bg)'">
+        <div style="width:100%;aspect-ratio:4/5;border-radius:2px;overflow:hidden;background:#4a5e42;margin-bottom:4px"><img src="images/team/consuelo%20milbverg.png" alt="Consuelo Milberg" onerror="this.style.opacity=0" style="width:100%;height:100%;object-fit:cover;object-position:center 15%"></div>
         <span style="font-family:var(--f);font-weight:200;font-size:clamp(19px,2vw,26px);line-height:1.1">Consuelo<br>Milberg</span>
         <span style="font-family:var(--m);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--cel-dk)">Personal Shopper</span>
         <p style="font-size:13px;color:var(--ink-50);line-height:1.75;max-width:100%">With more than 20 years of experience in the farmland sector, Consuelo works as a personal shopper, representing and accompanying the buyer through the full process of searching for and evaluating a property. Through Arocena Advisory, she draws on a solid network of agricultural engineers, technical advisors, and trusted specialists, allowing each property to be analyzed comprehensively — location, productive potential, soil characteristics — with satellite imagery, water table, and soil studies coordinated to fully understand each opportunity.</p>
       </div>
 
       <!-- 2: Juan Pedro -->
-      <div style="background:var(--cel-bg);padding:clamp(28px,3.5vw,44px) clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:10px;transition:background .35s" onmouseenter="this.style.background='#dceef9'" onmouseleave="this.style.background=''">
-        <div style="width:100%;aspect-ratio:4/5;border-radius:2px;overflow:hidden;background:#d0dde6;margin-bottom:4px"><img src="images/team/juan%20pedro%20arocena.png" alt="Juan Pedro Arocena" onerror="this.style.opacity=0" style="width:100%;height:100%;object-fit:cover;object-position:center 15%"></div>
+      <div style="background:var(--cel-bg);padding:clamp(28px,3.5vw,44px) clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:10px;transition:background .35s" onmouseenter="this.style.background='#dceef9'" onmouseleave="this.style.background='var(--cel-bg)'">
+        <div style="width:100%;aspect-ratio:4/5;border-radius:2px;overflow:hidden;background:#4a5e42;margin-bottom:4px"><img src="images/team/juan%20pedro%20arocena.png" alt="Juan Pedro Arocena" onerror="this.style.opacity=0" style="width:100%;height:100%;object-fit:cover;object-position:center 15%"></div>
         <span style="font-family:var(--f);font-weight:200;font-size:clamp(19px,2vw,26px);line-height:1.1">Juan Pedro<br>Arocena</span>
         <span style="font-family:var(--m);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--cel-dk)">Personal Shopper</span>
         <p style="font-size:13px;color:var(--ink-50);line-height:1.75;max-width:100%">With experience in strategy, consulting, and coaching, Juan Pedro combines a background in business administration with training as a psychological counselor and organizational coach. He brings that same strategic, empathetic approach to the process of moving countries: guiding each family through the human side of the decision — the uncertainty, the doubts, the adjustment — while working as a personal shopper alongside the Arocena Advisors team through the full search and acquisition process, in both markets.</p>
       </div>
 
       <!-- 3: Nicolás -->
-      <div style="background:var(--cel-bg);padding:clamp(28px,3.5vw,44px) clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:10px;transition:background .35s" onmouseenter="this.style.background='#dceef9'" onmouseleave="this.style.background=''">
-        <div style="width:100%;aspect-ratio:4/5;border-radius:2px;overflow:hidden;background:#d0dde6;margin-bottom:4px"><img src="images/team/nico%20arocena.png" alt="Nicolás Arocena" onerror="this.style.opacity=0" style="width:100%;height:100%;object-fit:cover;object-position:center 15%"></div>
+      <div style="background:var(--cel-bg);padding:clamp(28px,3.5vw,44px) clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:10px;transition:background .35s" onmouseenter="this.style.background='#dceef9'" onmouseleave="this.style.background='var(--cel-bg)'">
+        <div style="width:100%;aspect-ratio:4/5;border-radius:2px;overflow:hidden;background:#4a5e42;margin-bottom:4px"><img src="images/team/nico%20arocena.png" alt="Nicolás Arocena" onerror="this.style.opacity=0" style="width:100%;height:100%;object-fit:cover;object-position:center 15%"></div>
         <span style="font-family:var(--f);font-weight:200;font-size:clamp(19px,2vw,26px);line-height:1.1">Nicolás<br>Arocena</span>
         <span style="font-family:var(--m);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--cel-dk)">Branding</span>
         <p style="font-size:13px;color:var(--ink-50);line-height:1.75;max-width:100%">Behind every advisory firm is a story that needs to be told well. Nicolás leads the brand identity, visual language, and communication strategy for Arocena Advisory — drawing on years of building and running his own company in Argentina, where brand positioning was as critical as the product itself. At Arocena Advisory, he ensures that every touchpoint reflects the firm's values: independence, expertise, and a personal approach to every search.</p>
       </div>
 
       <!-- 4: Miguel -->
-      <div style="background:var(--cel-bg);padding:clamp(28px,3.5vw,44px) clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:10px;transition:background .35s" onmouseenter="this.style.background='#dceef9'" onmouseleave="this.style.background=''">
-        <div style="width:100%;aspect-ratio:4/5;border-radius:2px;overflow:hidden;background:#d0dde6;margin-bottom:4px"><img src="images/team/miguel%20arocena.png" alt="Miguel Arocena" onerror="this.style.opacity=0" style="width:100%;height:100%;object-fit:cover;object-position:center 15%"></div>
+      <div style="background:var(--cel-bg);padding:clamp(28px,3.5vw,44px) clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:10px;transition:background .35s" onmouseenter="this.style.background='#dceef9'" onmouseleave="this.style.background='var(--cel-bg)'">
+        <div style="width:100%;aspect-ratio:4/5;border-radius:2px;overflow:hidden;background:#4a5e42;margin-bottom:4px"><img src="images/team/miguel%20arocena.png" alt="Miguel Arocena" onerror="this.style.opacity=0" style="width:100%;height:100%;object-fit:cover;object-position:center 15%"></div>
         <span style="font-family:var(--f);font-weight:200;font-size:clamp(19px,2vw,26px);line-height:1.1">Miguel<br>Arocena</span>
         <span style="font-family:var(--m);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--cel-dk)">Communication</span>
         <p style="font-size:13px;color:var(--ink-50);line-height:1.75;max-width:100%">Miguel works as a sales representative at Constructora Caputo, specializing in land sales, giving him hands-on knowledge of the real estate market that families need to understand before investing in a new country. Paired with a background in communications and digital marketing, he works as a personal shopper, bridging the technical side of property — pricing, land value, opportunities — with clear, accessible guidance for people unfamiliar with the local market.</p>
       </div>
 
       <!-- 5: Consuelo Arocena -->
-      <div style="background:var(--cel-bg);padding:clamp(28px,3.5vw,44px) clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:10px;transition:background .35s" onmouseenter="this.style.background='#dceef9'" onmouseleave="this.style.background=''">
-        <div style="width:100%;aspect-ratio:4/5;border-radius:2px;overflow:hidden;background:#d0dde6;margin-bottom:4px"><img src="images/team/conuselo%20arocena.png" alt="Consuelo Arocena" onerror="this.style.opacity=0" style="width:100%;height:100%;object-fit:cover;object-position:center 15%"></div>
+      <div style="background:var(--cel-bg);padding:clamp(28px,3.5vw,44px) clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:10px;transition:background .35s" onmouseenter="this.style.background='#dceef9'" onmouseleave="this.style.background='var(--cel-bg)'">
+        <div style="width:100%;aspect-ratio:4/5;border-radius:2px;overflow:hidden;background:#4a5e42;margin-bottom:4px"><img src="images/team/conuselo%20arocena.png" alt="Consuelo Arocena" onerror="this.style.opacity=0" style="width:100%;height:100%;object-fit:cover;object-position:center 15%"></div>
         <span style="font-family:var(--f);font-weight:200;font-size:clamp(19px,2vw,26px);line-height:1.1">Consuelo<br>Arocena</span>
         <span style="font-family:var(--m);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--cel-dk)">Personal Shopper</span>
         <p style="font-size:13px;color:var(--ink-50);line-height:1.75;max-width:100%">Investing well in Argentina and Uruguay isn't only about knowing the laws — it's about knowing the right people. Consuelo brings a strong, personal network across both countries, working as a personal shopper who opens doors that aren't otherwise open: exclusive listings, off-market opportunities, and the right introductions at the right time.</p>
       </div>
 
       <!-- 6: Juan Martín -->
-      <div style="background:var(--cel-bg);padding:clamp(28px,3.5vw,44px) clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:10px;transition:background .35s" onmouseenter="this.style.background='#dceef9'" onmouseleave="this.style.background=''">
-        <div style="width:100%;aspect-ratio:4/5;border-radius:2px;overflow:hidden;background:#d0dde6;margin-bottom:4px"><img src="images/team/juan%20arocena.png" alt="Juan Martín Arocena" onerror="this.style.opacity=0" style="width:100%;height:100%;object-fit:cover;object-position:center 15%"></div>
+      <div style="background:var(--cel-bg);padding:clamp(28px,3.5vw,44px) clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:10px;transition:background .35s" onmouseenter="this.style.background='#dceef9'" onmouseleave="this.style.background='var(--cel-bg)'">
+        <div style="width:100%;aspect-ratio:4/5;border-radius:2px;overflow:hidden;background:#4a5e42;margin-bottom:4px"><img src="images/team/juan%20arocena.png" alt="Juan Martín Arocena" onerror="this.style.opacity=0" style="width:100%;height:100%;object-fit:cover;object-position:center 15%"></div>
         <span style="font-family:var(--f);font-weight:200;font-size:clamp(19px,2vw,26px);line-height:1.1">Juan<br>Arocena</span>
         <span style="font-family:var(--m);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--cel-dk)">Licensed Real Estate Broker</span>
         <p style="font-size:13px;color:var(--ink-50);line-height:1.75;max-width:100%">With nearly thirty years advising companies, investors, and international organizations across mergers and acquisitions, corporate law, and capital markets, Juan brings institutional-grade legal expertise to every family we help settle in Argentina and Uruguay. He has represented multinational corporations, private equity funds, and foreign banks in complex cross-border transactions — experience that now guides individuals and families navigating residency, investment, and legal processes in the region with the same rigor once reserved for major international deals.</p>
