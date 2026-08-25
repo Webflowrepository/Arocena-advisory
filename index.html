@@ -58,6 +58,12 @@ img{display:block;width:100%;height:100%;object-fit:cover}
 .logo{font-family:var(--f);font-weight:200;font-size:17px;letter-spacing:.42em;color:#fff;transition:color .4s}
 #nav.lit .logo{color:var(--ink)}
 #nav.lit .logo-img{filter:brightness(0)}
+.logo-name{
+  display:none;
+  font-family:var(--f);font-weight:200;font-size:13px;letter-spacing:.22em;
+  color:#fff;transition:color .4s;white-space:nowrap;line-height:1;
+}
+#nav.lit .logo-name{color:var(--ink)}
 .logo .d{color:var(--cel)}
 .nls{display:flex;gap:26px;align-items:center}
 .nls a{font-family:var(--m);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
@@ -148,14 +154,14 @@ h1.hero-h{
 
 /* hero bottom bar */
 .hero-foot{
-  display:grid;grid-template-columns:1fr auto;
-  align-items:end;gap:24px;
+  display:flex;flex-wrap:wrap;align-items:flex-end;gap:24px;
   border-top:1px solid rgba(255,255,255,.18);
   padding-top:clamp(18px,2.5vw,28px);margin-top:0;
 }
 .hero-sub{
+  flex:1;min-width:260px;max-width:44ch;
   font-size:clamp(14px,1.1vw,16px);color:rgba(255,255,255,.65);
-  line-height:1.7;max-width:44ch;
+  line-height:1.7;
   opacity:0;animation:fadeUp .8s var(--ease) 1.4s forwards;
 }
 .hero-ctas{display:flex;gap:10px;flex-wrap:wrap;flex-shrink:0;
@@ -284,7 +290,7 @@ h2.sec-h{
 }
 .srv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--ink-15)}
 .srv-c{
-  background:var(--off);padding:clamp(32px,4vw,52px) clamp(20px,3vw,34px);
+  background:var(--off);padding:clamp(28px,3.5vw,52px) clamp(20px,2.5vw,34px);
   display:flex;flex-direction:column;gap:16px;cursor:default;
   position:relative;overflow:hidden;transition:background .35s var(--ease);
 }
@@ -609,9 +615,17 @@ h2.au-h em{font-style:italic;color:rgba(255,255,255,.35)}
 .ab-toggle.open .ab-arr{transform:rotate(180deg)}
 .ab-more{overflow:hidden;transition:max-height .65s var(--ease)}
 
+/* ── LAPTOP MID BREAKPOINT ── */
+@media(max-width:1200px){
+  .srv-grid{grid-template-columns:repeat(2,1fr)}
+  .j-steps{grid-template-columns:repeat(2,1fr)}
+}
+
 /* ── RESPONSIVE ──────────── */
 @media(max-width:1060px){
   .nls,.ncta{display:none}.nbg{display:flex}
+  .logo-name{display:block}
+  .logo-img{height:34px!important}
   .ab-grid{grid-template-columns:1fr}.ab-img{aspect-ratio:3/2;max-height:380px}
   .ab-toggle{display:flex}
   .ab-more{max-height:0}
@@ -627,7 +641,7 @@ h2.au-h em{font-style:italic;color:rgba(255,255,255,.35)}
 }
 @media(max-width:640px){
   .srv-grid{grid-template-columns:1fr}.j-steps{grid-template-columns:1fr}
-  .who-grid{grid-template-columns:1fr}.hero-foot{grid-template-columns:1fr;gap:16px}
+  .who-grid{grid-template-columns:1fr}
   .team-grid{grid-template-columns:1fr!important}
   .ft-top{flex-direction:column}
   /* split panel: stack vertically on mobile */
@@ -648,8 +662,9 @@ h2.au-h em{font-style:italic;color:rgba(255,255,255,.35)}
 
 <!-- ══ NAV ══════════════════════════════════════════ -->
 <nav id="nav">
-  <a href="#hero" class="logo" style="display:flex;align-items:center">
+  <a href="#hero" class="logo" style="display:flex;align-items:center;gap:10px">
     <img src="arocen%20alogo.png" alt="Arocena Advisory" class="logo-img" style="height:44px;width:auto;display:block;filter:brightness(0) invert(1);transition:filter .4s">
+    <span class="logo-name">Arocena Advisory</span>
   </a>
   <div class="nls">
     <a href="#journey">How We Work</a>
@@ -1076,10 +1091,9 @@ h2.au-h em{font-style:italic;color:rgba(255,255,255,.35)}
           <div class="cm"><span class="cml">Contact</span><span class="cmv">By appointment only</span></div>
         </div>
       </div>
-      <form class="ctc-form" action="https://formsubmit.co/nicoarocena@hotmail.com" method="POST">
+      <form class="ctc-form" id="ctc-form" novalidate>
         <input type="hidden" name="_subject" value="Nueva consulta — Arocena Advisory">
         <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_template" value="table">
         <div class="ff rv"><label class="fl">Full name</label><input type="text" name="name" placeholder="Your name" required></div>
         <div class="ff rv d1"><label class="fl">Email</label><input type="email" name="email" placeholder="your@email.com" required></div>
         <div class="ff rv d2"><label class="fl">Country</label><input type="text" name="country" placeholder="Argentina, Brazil, USA…"></div>
@@ -1094,9 +1108,16 @@ h2.au-h em{font-style:italic;color:rgba(255,255,255,.35)}
         </div>
         <div class="ff rv d4"><label class="fl">Message (optional)</label><textarea name="message" placeholder="A brief description of your situation"></textarea></div>
         <p class="f-disc rv d4">All conversations are held in strict confidence.</p>
-        <button type="submit" class="btn btn-cel rv d4" style="align-self:flex-start;margin-top:4px">
-          <span>Send Message</span><span class="ar">→</span></button>
+        <button type="submit" id="ctc-btn" class="btn btn-cel rv d4" style="align-self:flex-start;margin-top:4px">
+          <span id="ctc-btn-txt">Send Message</span><span class="ar">→</span></button>
+        <p id="ctc-err" style="display:none;color:#c0392b;font-family:var(--m);font-size:10px;letter-spacing:.15em;margin-top:8px">Something went wrong. Please try again or email us directly.</p>
       </form>
+      <div id="ctc-success" style="display:none;flex-direction:column;align-items:flex-start;gap:20px;padding:clamp(40px,5vw,64px) 0">
+        <div style="width:52px;height:52px;border-radius:50%;background:var(--cel-dk);display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px;flex-shrink:0">✓</div>
+        <h3 style="font-family:var(--f);font-weight:200;font-size:clamp(26px,3vw,38px);line-height:1.1">Message sent.</h3>
+        <p style="font-size:clamp(14px,1vw,16px);color:var(--ink-50);line-height:1.8;max-width:38ch">We'll review your enquiry and be in touch shortly. All conversations are held in strict confidence.</p>
+        <a href="#hero" class="btn btn-dk" style="margin-top:8px"><span>Back to top</span></a>
+      </div>
     </div>
   </div>
 </section>
@@ -1315,6 +1336,47 @@ new IntersectionObserver(entries => {
       }, {rootMargin: '-36% 0px -36% 0px'});
       sects.forEach(s => sio.observe(s));
     })() : null;
+
+/* ── CONTACT FORM AJAX ── */
+(function(){
+  const form = document.getElementById('ctc-form');
+  if(!form) return;
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    const btn    = document.getElementById('ctc-btn');
+    const btnTxt = document.getElementById('ctc-btn-txt');
+    const errMsg = document.getElementById('ctc-err');
+    const success= document.getElementById('ctc-success');
+    // basic required-field check
+    const name  = form.querySelector('[name="name"]');
+    const email = form.querySelector('[name="email"]');
+    if(!name.value.trim() || !email.value.trim()){
+      name.reportValidity(); email.reportValidity(); return;
+    }
+    btnTxt.textContent = 'Sending…';
+    btn.disabled = true;
+    errMsg.style.display = 'none';
+    try {
+      const fd = new FormData(form);
+      const res = await fetch('https://formsubmit.co/ajax/nicoarocena@hotmail.com', {
+        method: 'POST',
+        body: fd,
+        headers: {'Accept': 'application/json'}
+      });
+      const data = await res.json();
+      if(data.success === 'true' || data.success === true){
+        form.style.display = 'none';
+        success.style.display = 'flex';
+      } else {
+        throw new Error('failed');
+      }
+    } catch(err){
+      btnTxt.textContent = 'Send Message';
+      btn.disabled = false;
+      errMsg.style.display = 'block';
+    }
+  });
+})();
 </script>
 </body>
 </html>
