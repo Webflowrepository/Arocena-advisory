@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arocena Advisors — Your personal shopper · Argentina & Uruguay</title>
+<title>Arocena Advisory — Your personal shopper · Argentina & Uruguay</title>
 <meta name="description" content="Independent real estate advisory across Argentina and Uruguay. We search the full market and represent your interests — not the seller's.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.arocena-advisory.com/">
-<meta property="og:title" content="Arocena Advisors — Your personal shopper · Argentina & Uruguay">
+<meta property="og:title" content="Arocena Advisory — Your personal shopper · Argentina & Uruguay">
 <meta property="og:description" content="Independent real estate advisory across Argentina and Uruguay. We search the full market and represent your interests — not the seller's.">
 <meta property="og:image" content="https://www.arocena-advisory.com/arocen%20alogo.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Arocena Advisors — Your personal shopper · Argentina & Uruguay">
+<meta name="twitter:title" content="Arocena Advisory — Your personal shopper · Argentina & Uruguay">
 <meta name="twitter:description" content="Independent real estate advisory across Argentina and Uruguay. We search the full market and represent your interests — not the seller's.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -599,10 +599,24 @@ h2.au-h em{font-style:italic;color:rgba(255,255,255,.35)}
   .au-ms{padding:36px 18px}
 }
 
+/* ── ABOUT TOGGLE ─────────── */
+.ab-toggle{
+  display:none;align-items:center;gap:8px;
+  font-family:var(--m);font-size:10px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--cel-dk);background:none;border:none;cursor:pointer;padding:0;
+}
+.ab-toggle .ab-arr{display:inline-block;transition:transform .45s var(--ease)}
+.ab-toggle.open .ab-arr{transform:rotate(180deg)}
+.ab-more{overflow:hidden;transition:max-height .65s var(--ease)}
+
 /* ── RESPONSIVE ──────────── */
 @media(max-width:1060px){
   .nls,.ncta{display:none}.nbg{display:flex}
   .ab-grid{grid-template-columns:1fr}.ab-img{aspect-ratio:3/2;max-height:380px}
+  .ab-toggle{display:flex}
+  .ab-more{max-height:0}
+  .ab-more.open{max-height:800px}
+  .team-grid{grid-template-columns:repeat(2,1fr)!important}
   .ap-head{grid-template-columns:1fr}.hub-wrap{display:none}.hub-mob{display:grid}
   .srv-grid{grid-template-columns:1fr 1fr}
   .j-steps{grid-template-columns:1fr 1fr}
@@ -614,6 +628,7 @@ h2.au-h em{font-style:italic;color:rgba(255,255,255,.35)}
 @media(max-width:640px){
   .srv-grid{grid-template-columns:1fr}.j-steps{grid-template-columns:1fr}
   .who-grid{grid-template-columns:1fr}.hero-foot{grid-template-columns:1fr;gap:16px}
+  .team-grid{grid-template-columns:1fr!important}
   .ft-top{flex-direction:column}
   /* split panel: stack vertically on mobile */
   #argentina{flex-direction:column;height:auto}
@@ -720,11 +735,16 @@ h2.au-h em{font-style:italic;color:rgba(255,255,255,.35)}
       <div class="bq rv d2">
         <p>"We don't present properties at random. We search the full market and represent your interests — not the seller's."</p>
       </div>
-      <p class="support rv d3">Arocena Advisors is an independent real estate advisory firm operating across Argentina and Uruguay. We do not maintain a fixed portfolio. We search the entire market and evaluate properties from developers, brokers, and private sellers alike — selecting only what is right for each client.</p>
-      <div class="pill-row rv d4">
-        <div class="pill">No exclusive portfolio. Full-market search.</div>
-        <div class="pill">Your interests defended at every stage.</div>
-        <div class="pill">Argentina and Uruguay. End to end.</div>
+      <button class="ab-toggle" onclick="this.classList.toggle('open');document.querySelector('.ab-more').classList.toggle('open');this.querySelector('.ab-txt').textContent=this.classList.contains('open')?'Read less':'Read more'">
+        <span class="ab-txt">Read more</span><span class="ab-arr">↓</span>
+      </button>
+      <div class="ab-more">
+        <p class="support rv d3">Arocena Advisory is an independent real estate advisory firm operating across Argentina and Uruguay. We do not maintain a fixed portfolio. We search the entire market and evaluate properties from developers, brokers, and private sellers alike — selecting only what is right for each client.</p>
+        <div class="pill-row rv d4">
+          <div class="pill">No exclusive portfolio. Full-market search.</div>
+          <div class="pill">Your interests defended at every stage.</div>
+          <div class="pill">Argentina and Uruguay. End to end.</div>
+        </div>
       </div>
     </div>
   </div>
@@ -841,6 +861,7 @@ h2.au-h em{font-style:italic;color:rgba(255,255,255,.35)}
 
       <div class="who-c"><h3>Rural &amp; Campo<br>Buyers</h3><span class="who-sub">Productive and recreational land</span></div>
       <div class="who-c"><h3>Relocating<br>Families</h3><span class="who-sub">Settlement support in the region</span></div>
+      <div class="who-c"><h3>Family<br>Offices</h3><span class="who-sub">Patrimony &amp; real estate allocation</span></div>
     </div>
   </div>
 </section>
@@ -852,7 +873,7 @@ h2.au-h em{font-style:italic;color:rgba(255,255,255,.35)}
       <div><span class="ab-label rv">The Team</span><h2 class="sec-h rv d1">The people<br>behind your search.</h2></div>
       <p class="support rv d2" style="max-width:38ch">A family firm. Every member brings deep local knowledge, independence and a network built over decades.</p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ink-15)" class="rv d2">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ink-15)" class="rv d2 team-grid">
 
       <!-- 1: Consuelo Milberg -->
       <div style="background:var(--cel-bg);padding:clamp(28px,3.5vw,44px) clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:10px;transition:background .35s" onmouseenter="this.style.background='#dceef9'" onmouseleave="this.style.background='var(--cel-bg)'">
@@ -867,7 +888,7 @@ h2.au-h em{font-style:italic;color:rgba(255,255,255,.35)}
         <div style="width:100%;aspect-ratio:4/5;border-radius:2px;overflow:hidden;background:#4a5e42;margin-bottom:4px"><img src="images/team/juan%20pedro%20arocena.png" alt="Juan Pedro Arocena" onerror="this.style.opacity=0" style="width:100%;height:100%;object-fit:cover;object-position:center 15%"></div>
         <span style="font-family:var(--f);font-weight:200;font-size:clamp(19px,2vw,26px);line-height:1.1">Juan Pedro<br>Arocena</span>
         <span style="font-family:var(--m);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--cel-dk)">Personal Shopper</span>
-        <p style="font-size:13px;color:var(--ink-50);line-height:1.75;max-width:100%">With experience in strategy, consulting, and coaching, Juan Pedro combines a background in business administration with training as a psychological counselor and organizational coach. He brings that same strategic, empathetic approach to the process of moving countries: guiding each family through the human side of the decision — the uncertainty, the doubts, the adjustment — while working as a personal shopper alongside the Arocena Advisors team through the full search and acquisition process, in both markets.</p>
+        <p style="font-size:13px;color:var(--ink-50);line-height:1.75;max-width:100%">With experience in strategy, consulting, and coaching, Juan Pedro combines a background in business administration with training as a psychological counselor and organizational coach. He brings that same strategic, empathetic approach to the process of moving countries: guiding each family through the human side of the decision — the uncertainty, the doubts, the adjustment — while working as a personal shopper alongside the Arocena Advisory team through the full search and acquisition process, in both markets.</p>
       </div>
 
       <!-- 3: Nicolás -->
@@ -1108,7 +1129,7 @@ h2.au-h em{font-style:italic;color:rgba(255,255,255,.35)}
       </div>
     </div>
     <div class="fb">
-      <span>© <span id="yr"></span> Arocena Advisors — Real Estate Advisory</span>
+      <span>© <span id="yr"></span> Arocena Advisory — Real Estate Advisory</span>
       <span>Argentina & Uruguay · Independent Advisory</span>
     </div>
   </div>
