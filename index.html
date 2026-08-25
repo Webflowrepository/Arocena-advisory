@@ -588,6 +588,10 @@ h2.au-h em{font-style:italic;color:rgba(255,255,255,.35)}
   .srv-grid{grid-template-columns:1fr}.j-steps{grid-template-columns:1fr}
   .who-grid{grid-template-columns:1fr}.hero-foot{grid-template-columns:1fr;gap:16px}
   .ft-top{flex-direction:column}
+  /* split panel: stack vertically on mobile */
+  #argentina{flex-direction:column;height:auto}
+  #argentina > div[style*="flex:1"],#argentina #uruguay{height:70svh;flex:none;width:100%}
+  #argentina > div[style*="width:1px"]{width:100%;height:1px}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:duration:.01ms!important}
@@ -751,49 +755,50 @@ h2.au-h em{font-style:italic;color:rgba(255,255,255,.35)}
   </div>
 </section>
 
-<!-- ══ ARGENTINA — full bleed photo ══════════════════ -->
-<section id="argentina" style="position:relative;height:100svh;min-height:560px;overflow:hidden;display:flex;align-items:flex-end">
-  <div class="ury-bg">
-    <img src="https://images.unsplash.com/photo-1589909202802-8f4aadce4f45?q=80&w=2400&auto=format&fit=crop"
-      alt="Buenos Aires" onerror="this.style.opacity=0" style="width:100%;height:115%;object-fit:cover;transform:translateY(0)">
-  </div>
-  <div class="ury-scrim"></div>
-  <div class="ury-content">
-    <div class="ury-left">
-      <span class="ury-label rv">Where We Work</span>
-      <h2 class="ury-h rv d1">Argentina.</h2>
-      <a href="#contact" class="btn btn-w rv d2" style="align-self:flex-start"><span>Start your search</span><span class="ar">→</span></a>
-    </div>
-    <div class="ury-right rv d2">
-      <div class="ury-r"><span class="ury-ri">01</span><span class="ury-rt">Buenos Aires — Palermo, San Isidro &amp; Nordelta</span></div>
-      <div class="ury-r"><span class="ury-ri">02</span><span class="ury-rt">The Pampas — rural estates &amp; campos</span></div>
-      <div class="ury-r"><span class="ury-ri">03</span><span class="ury-rt">Off-market &amp; private seller access</span></div>
-      <div class="ury-r"><span class="ury-ri">04</span><span class="ury-rt">Foreign buyer legal &amp; tax coordination</span></div>
-    </div>
-  </div>
-</section>
+<!-- ══ WHERE WE WORK — split panel ════════════════════ -->
+<section id="argentina" style="display:flex;height:100svh;min-height:520px;overflow:hidden">
 
-<!-- ══ URUGUAY — full bleed photo ════════════════════ -->
-<section id="uruguay">
-  <div class="ury-bg">
-    <img id="uryBg"
-      src="https://images.unsplash.com/photo-1692278069387-a5645520a4d4?q=80&w=2400&auto=format&fit=crop"
-      alt="Punta del Este coast" onerror="this.style.opacity=0">
-  </div>
-  <div class="ury-scrim"></div>
-  <div class="ury-content">
-    <div class="ury-left">
-      <span class="ury-label rv">Where We Work</span>
-      <h2 class="ury-h rv d1">Uruguay.</h2>
-      <a href="#contact" class="btn btn-w rv d2" style="align-self:flex-start"><span>Start your search</span><span class="ar">→</span></a>
-    </div>
-    <div class="ury-right rv d2">
-      <div class="ury-r"><span class="ury-ri">01</span><span class="ury-rt">Coastal — luxury &amp; off-plan</span></div>
-      <div class="ury-r"><span class="ury-ri">02</span><span class="ury-rt">Rural properties and campos</span></div>
-      <div class="ury-r"><span class="ury-ri">03</span><span class="ury-rt">Foreign buyer legal &amp; tax guidance</span></div>
-      <div class="ury-r"><span class="ury-ri">04</span><span class="ury-rt">High-quality coastal lifestyle</span></div>
+  <!-- ARGENTINA -->
+  <div style="position:relative;flex:1;overflow:hidden">
+    <img src="https://images.unsplash.com/photo-1526400473556-aac12354f3db?q=80&w=1600&auto=format&fit=crop"
+      alt="Buenos Aires" onerror="this.style.opacity=0"
+      style="position:absolute;inset:0;width:100%;height:110%;object-fit:cover;object-position:center top">
+    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(7,15,20,.88) 0%,rgba(7,15,20,.25) 55%,transparent 100%)"></div>
+    <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(28px,3.5vw,52px)">
+      <span style="font-family:var(--m);font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:14px;display:block" class="rv">Where We Work</span>
+      <h2 style="font-family:var(--f);font-weight:200;font-size:clamp(34px,3.8vw,60px);color:#fff;line-height:1.08;margin-bottom:clamp(20px,2.5vw,34px)" class="rv d1">Argentina.</h2>
+      <div style="display:flex;flex-direction:column;gap:11px;margin-bottom:clamp(24px,3vw,40px)" class="rv d2">
+        <div style="display:flex;gap:14px;align-items:baseline"><span style="font-family:var(--m);font-size:9px;color:var(--cel);letter-spacing:.1em;flex-shrink:0">01</span><span style="font-size:clamp(12px,.9vw,14px);color:rgba(255,255,255,.6);line-height:1.4">Buenos Aires — Palermo, San Isidro &amp; Nordelta</span></div>
+        <div style="display:flex;gap:14px;align-items:baseline"><span style="font-family:var(--m);font-size:9px;color:var(--cel);letter-spacing:.1em;flex-shrink:0">02</span><span style="font-size:clamp(12px,.9vw,14px);color:rgba(255,255,255,.6);line-height:1.4">The Pampas — rural estates &amp; campos</span></div>
+        <div style="display:flex;gap:14px;align-items:baseline"><span style="font-family:var(--m);font-size:9px;color:var(--cel);letter-spacing:.1em;flex-shrink:0">03</span><span style="font-size:clamp(12px,.9vw,14px);color:rgba(255,255,255,.6);line-height:1.4">Off-market &amp; private seller access</span></div>
+        <div style="display:flex;gap:14px;align-items:baseline"><span style="font-family:var(--m);font-size:9px;color:var(--cel);letter-spacing:.1em;flex-shrink:0">04</span><span style="font-size:clamp(12px,.9vw,14px);color:rgba(255,255,255,.6);line-height:1.4">Foreign buyer legal &amp; tax coordination</span></div>
+      </div>
+      <a href="#contact" class="btn btn-w rv d3" style="align-self:flex-start"><span>Start your search</span><span class="ar">→</span></a>
     </div>
   </div>
+
+  <!-- Divider -->
+  <div style="width:1px;background:rgba(255,255,255,.1);flex-shrink:0;z-index:2"></div>
+
+  <!-- URUGUAY -->
+  <div id="uruguay" style="position:relative;flex:1;overflow:hidden">
+    <img src="https://images.unsplash.com/photo-1692278069387-a5645520a4d4?q=80&w=1600&auto=format&fit=crop"
+      alt="Punta del Este" onerror="this.style.opacity=0"
+      style="position:absolute;inset:0;width:100%;height:110%;object-fit:cover;object-position:center top">
+    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(7,15,20,.88) 0%,rgba(7,15,20,.25) 55%,transparent 100%)"></div>
+    <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(28px,3.5vw,52px)">
+      <span style="font-family:var(--m);font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:14px;display:block" class="rv">Where We Work</span>
+      <h2 style="font-family:var(--f);font-weight:200;font-size:clamp(34px,3.8vw,60px);color:#fff;line-height:1.08;margin-bottom:clamp(20px,2.5vw,34px)" class="rv d1">Uruguay.</h2>
+      <div style="display:flex;flex-direction:column;gap:11px;margin-bottom:clamp(24px,3vw,40px)" class="rv d2">
+        <div style="display:flex;gap:14px;align-items:baseline"><span style="font-family:var(--m);font-size:9px;color:var(--cel);letter-spacing:.1em;flex-shrink:0">01</span><span style="font-size:clamp(12px,.9vw,14px);color:rgba(255,255,255,.6);line-height:1.4">Coastal — luxury &amp; off-plan</span></div>
+        <div style="display:flex;gap:14px;align-items:baseline"><span style="font-family:var(--m);font-size:9px;color:var(--cel);letter-spacing:.1em;flex-shrink:0">02</span><span style="font-size:clamp(12px,.9vw,14px);color:rgba(255,255,255,.6);line-height:1.4">Rural properties and campos</span></div>
+        <div style="display:flex;gap:14px;align-items:baseline"><span style="font-family:var(--m);font-size:9px;color:var(--cel);letter-spacing:.1em;flex-shrink:0">03</span><span style="font-size:clamp(12px,.9vw,14px);color:rgba(255,255,255,.6);line-height:1.4">Foreign buyer legal &amp; tax guidance</span></div>
+        <div style="display:flex;gap:14px;align-items:baseline"><span style="font-family:var(--m);font-size:9px;color:var(--cel);letter-spacing:.1em;flex-shrink:0">04</span><span style="font-size:clamp(12px,.9vw,14px);color:rgba(255,255,255,.6);line-height:1.4">High-quality coastal lifestyle</span></div>
+      </div>
+      <a href="#contact" class="btn btn-w rv d3" style="align-self:flex-start"><span>Start your search</span><span class="ar">→</span></a>
+    </div>
+  </div>
+
 </section>
 
 <!-- ══ WHO ════════════════════════════════════════════ -->
@@ -825,7 +830,7 @@ h2.au-h em{font-style:italic;color:rgba(255,255,255,.35)}
 
       <!-- 1: Nicolás -->
       <div style="background:var(--cel-bg);padding:clamp(28px,3.5vw,44px) clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:10px;transition:background .35s" onmouseenter="this.style.background='#dceef9'" onmouseleave="this.style.background=''">
-        <div style="width:100%;aspect-ratio:4/3;border-radius:2px;overflow:hidden;background:#d0dde6;margin-bottom:4px"><img src="images/team/nico%20arocena.png" alt="Nicolás Arocena" onerror="this.style.opacity=0" style="width:100%;height:100%;object-fit:cover"></div>
+        <div style="width:100%;aspect-ratio:4/5;border-radius:2px;overflow:hidden;background:#d0dde6;margin-bottom:4px"><img src="images/team/nico%20arocena.png" alt="Nicolás Arocena" onerror="this.style.opacity=0" style="width:100%;height:100%;object-fit:cover;object-position:center 15%"></div>
         <span style="font-family:var(--f);font-weight:200;font-size:clamp(19px,2vw,26px);line-height:1.1">Nicolás<br>Arocena</span>
         <span style="font-family:var(--m);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--cel-dk)">Personal Shopper</span>
         <p style="font-size:13px;color:var(--ink-50);line-height:1.75;max-width:100%">Leads property search, evaluation and selection. Particularly skilled at negotiation — identifying the right property and obtaining the right terms on your behalf.</p>
@@ -834,7 +839,7 @@ h2.au-h em{font-style:italic;color:rgba(255,255,255,.35)}
 
       <!-- 2: Juan Pedro -->
       <div style="background:var(--cel-bg);padding:clamp(28px,3.5vw,44px) clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:10px;transition:background .35s" onmouseenter="this.style.background='#dceef9'" onmouseleave="this.style.background=''">
-        <div style="width:100%;aspect-ratio:4/3;border-radius:2px;overflow:hidden;background:#d0dde6;margin-bottom:4px"><img src="images/team/juan%20pedro%20arocena.png" alt="Juan Pedro Arocena" onerror="this.style.opacity=0" style="width:100%;height:100%;object-fit:cover"></div>
+        <div style="width:100%;aspect-ratio:4/5;border-radius:2px;overflow:hidden;background:#d0dde6;margin-bottom:4px"><img src="images/team/juan%20pedro%20arocena.png" alt="Juan Pedro Arocena" onerror="this.style.opacity=0" style="width:100%;height:100%;object-fit:cover;object-position:center 15%"></div>
         <span style="font-family:var(--f);font-weight:200;font-size:clamp(19px,2vw,26px);line-height:1.1">Juan Pedro<br>Arocena</span>
         <span style="font-family:var(--m);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--cel-dk)">Strategic Advisor</span>
         <p style="font-size:13px;color:var(--ink-50);line-height:1.75;max-width:100%">With experience in strategy, consulting, and coaching, Juan Pedro supports individuals and organizations through decision-making processes. At Arocena Advisory, he brings a strategic and personalized approach to understanding each client's needs and guiding them in finding the right property in Argentina and Uruguay.</p>
@@ -842,7 +847,7 @@ h2.au-h em{font-style:italic;color:rgba(255,255,255,.35)}
 
       <!-- 3: Consuelo Milberg -->
       <div style="background:var(--cel-bg);padding:clamp(28px,3.5vw,44px) clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:10px;transition:background .35s" onmouseenter="this.style.background='#dceef9'" onmouseleave="this.style.background=''">
-        <div style="width:100%;aspect-ratio:4/3;border-radius:2px;overflow:hidden;background:#d0dde6;margin-bottom:4px"><img src="images/team/consuelo%20milbverg.png" alt="Consuelo Milberg" onerror="this.style.opacity=0" style="width:100%;height:100%;object-fit:cover"></div>
+        <div style="width:100%;aspect-ratio:4/5;border-radius:2px;overflow:hidden;background:#d0dde6;margin-bottom:4px"><img src="images/team/consuelo%20milbverg.png" alt="Consuelo Milberg" onerror="this.style.opacity=0" style="width:100%;height:100%;object-fit:cover;object-position:center 15%"></div>
         <span style="font-family:var(--f);font-weight:200;font-size:clamp(19px,2vw,26px);line-height:1.1">Consuelo<br>Milberg</span>
         <span style="font-family:var(--m);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--cel-dk)">Rural & Campo</span>
         <p style="font-size:13px;color:var(--ink-50);line-height:1.75;max-width:100%">With over 20 years of experience in the rural property sector, Consuelo works as a personal shopper — representing and accompanying the buyer throughout the search and evaluation process. Through Arocena Advisory, she coordinates a trusted network of agronomists, technical advisors and specialists, allowing each property to be assessed holistically: location, productive capacity, soil characteristics, and long-term potential. Satellite imagery, water table and soil studies are coordinated to fully understand each field.</p>
@@ -850,7 +855,7 @@ h2.au-h em{font-style:italic;color:rgba(255,255,255,.35)}
 
       <!-- 4: Miguel -->
       <div style="background:var(--cel-bg);padding:clamp(28px,3.5vw,44px) clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:10px;transition:background .35s" onmouseenter="this.style.background='#dceef9'" onmouseleave="this.style.background=''">
-        <div style="width:100%;aspect-ratio:4/3;border-radius:2px;overflow:hidden;background:#d0dde6;margin-bottom:4px"><img src="images/team/miguel%20arocena.png" alt="Miguel Arocena" onerror="this.style.opacity=0" style="width:100%;height:100%;object-fit:cover"></div>
+        <div style="width:100%;aspect-ratio:4/5;border-radius:2px;overflow:hidden;background:#d0dde6;margin-bottom:4px"><img src="images/team/miguel%20arocena.png" alt="Miguel Arocena" onerror="this.style.opacity=0" style="width:100%;height:100%;object-fit:cover;object-position:center 15%"></div>
         <span style="font-family:var(--f);font-weight:200;font-size:clamp(19px,2vw,26px);line-height:1.1">Miguel<br>Arocena</span>
         <span style="font-family:var(--m);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--cel-dk)">Brand & Communication</span>
         <p style="font-size:13px;color:var(--ink-50);line-height:1.75;max-width:100%">With experience in marketing, internal communications, and project development, Miguel works alongside companies and entrepreneurs to build their identity, communication, and positioning. His approach integrates strategy, communication, and marketing — with a focus on creating clear, effective, and meaningful solutions aligned with each project's identity and purpose.</p>
@@ -858,7 +863,7 @@ h2.au-h em{font-style:italic;color:rgba(255,255,255,.35)}
 
       <!-- 5: Consuelo Arocena -->
       <div style="background:var(--cel-bg);padding:clamp(28px,3.5vw,44px) clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:10px;transition:background .35s" onmouseenter="this.style.background='#dceef9'" onmouseleave="this.style.background=''">
-        <div style="width:100%;aspect-ratio:4/3;border-radius:2px;overflow:hidden;background:#d0dde6;margin-bottom:4px"><img src="images/team/conuselo%20arocena.png" alt="Consuelo Arocena" onerror="this.style.opacity=0" style="width:100%;height:100%;object-fit:cover"></div>
+        <div style="width:100%;aspect-ratio:4/5;border-radius:2px;overflow:hidden;background:#d0dde6;margin-bottom:4px"><img src="images/team/conuselo%20arocena.png" alt="Consuelo Arocena" onerror="this.style.opacity=0" style="width:100%;height:100%;object-fit:cover;object-position:center 15%"></div>
         <span style="font-family:var(--f);font-weight:200;font-size:clamp(19px,2vw,26px);line-height:1.1">Consuelo<br>Arocena</span>
         <span style="font-family:var(--m);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--cel-dk)">Local Integration</span>
         <p style="font-size:13px;color:var(--ink-50);line-height:1.75;max-width:100%">Accompanies clients relocating or spending extended time in the region — providing access to local professionals, services and the contacts needed to settle into personal and family life.</p>
@@ -866,7 +871,7 @@ h2.au-h em{font-style:italic;color:rgba(255,255,255,.35)}
 
       <!-- 6: Juan Martín -->
       <div style="background:var(--cel-bg);padding:clamp(28px,3.5vw,44px) clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:10px;transition:background .35s" onmouseenter="this.style.background='#dceef9'" onmouseleave="this.style.background=''">
-        <div style="width:100%;aspect-ratio:4/3;border-radius:2px;overflow:hidden;background:#d0dde6;margin-bottom:4px"><img src="images/team/juan%20arocena.png" alt="Juan Martín Arocena" onerror="this.style.opacity=0" style="width:100%;height:100%;object-fit:cover"></div>
+        <div style="width:100%;aspect-ratio:4/5;border-radius:2px;overflow:hidden;background:#d0dde6;margin-bottom:4px"><img src="images/team/juan%20arocena.png" alt="Juan Martín Arocena" onerror="this.style.opacity=0" style="width:100%;height:100%;object-fit:cover;object-position:center 15%"></div>
         <span style="font-family:var(--f);font-weight:200;font-size:clamp(19px,2vw,26px);line-height:1.1">Juan Martín<br>Arocena</span>
         <span style="font-family:var(--m);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--cel-dk)">Legal & Cross-Border</span>
         <p style="font-size:13px;color:var(--ink-50);line-height:1.75;max-width:100%">Coordinates the legal, tax and regulatory framework for every operation — from initial analysis to closing and post-sale, across both countries.</p>
@@ -962,6 +967,10 @@ h2.au-h em{font-style:italic;color:rgba(255,255,255,.35)}
         <div class="fh-yr rv">1887 · Argentina</div>
         <h3 class="fh-h rv d1">Candelaria<br><em>takes charge.</em></h3>
         <p class="fh-p rv d2">We are descendants of Doña Candelaria Fouillerac de Duhau, a woman ahead of her time who, after being widowed in 1887, assumed responsibility for managing her family's agricultural enterprises. At a time when women rarely held visible leadership positions, she managed estates, oversaw livestock operations, and made business decisions that played a decisive role in consolidating the family's agricultural holdings. La Candelaria estate in Trenque Lauquen still bears her name and honors her legacy.</p>
+        <div class="fh-img rv d3">
+          <img src="https://images.unsplash.com/photo-1776004704973-cb5aed4cdf03?q=80&w=2400&auto=format&fit=crop" alt="La Candelaria estate, Trenque Lauquen, Argentina" onerror="this.style.opacity=0">
+        </div>
+        <p class="fh-cap rv d3">La Candelaria · Trenque Lauquen, Buenos Aires Province</p>
       </div>
 
       <!-- Chapter 2: Palacio Duhau -->
@@ -971,7 +980,7 @@ h2.au-h em{font-style:italic;color:rgba(255,255,255,.35)}
         <h3 class="fh-h rv d1">Palacio Duhau,<br><em>Avenida Alvear.</em></h3>
         <p class="fh-p rv d2">Our history is also closely connected to Palacio Duhau, one of Buenos Aires's most iconic private residences. Our great-grandfather, Luis Duhau, commissioned the construction of the family palace, which was completed in 1934 on Avenida Alvear and designed by French architect Léon Dourge.</p>
         <div class="fh-img rv d3">
-          <img src="images/palacio-duhau.jpg" alt="Palacio Duhau, Avenida Alvear, Buenos Aires" onerror="this.style.opacity=0">
+          <img src="https://images.unsplash.com/photo-1669656984229-459f6bb0f96c?q=80&w=2400&auto=format&fit=crop" alt="Palacio Duhau, Avenida Alvear, Buenos Aires" onerror="this.style.opacity=0">
         </div>
         <p class="fh-cap rv d3">Palacio Duhau · Avenida Alvear, Buenos Aires</p>
         <p class="fh-p rv d3">Conceived as a grand family residence, the palace became home to his children and their respective families. Over time, the building became a symbol of Buenos Aires's French-inspired architecture. Today, it forms part of Palacio Duhau–Park Hyatt and remains a landmark of elegance, heritage, and hospitality.</p>
@@ -985,7 +994,7 @@ h2.au-h em{font-style:italic;color:rgba(255,255,255,.35)}
         <p class="fh-p rv d2">In Uruguay, our family is descended from Ramón Arocena Castro and his son Alfredo Arocena Artagaveytia, our great-grandfather and a key figure in the transformation of Carrasco.</p>
         <p class="fh-p rv d2">A lawyer, entrepreneur, and visionary, Alfredo envisioned a residential seaside development in the early twentieth century, inspired by the elegance of Europe's great urban centers. His vision brought together architecture, urban planning, nature, and quality of life, giving rise to a garden suburb that would become one of Montevideo's most prestigious and emblematic neighborhoods.</p>
         <div class="fh-img rv d3">
-          <img src="images/hotel-carrasco.jpg" alt="Hotel Casino Carrasco, Montevideo" onerror="this.style.opacity=0">
+          <img src="https://images.unsplash.com/photo-1767025572084-50cd036d21c5?q=80&w=2400&auto=format&fit=crop" alt="Hotel Casino Carrasco, Montevideo" onerror="this.style.opacity=0">
         </div>
         <p class="fh-cap rv d3">Hotel Casino Carrasco · Montevideo, Uruguay</p>
         <p class="fh-p rv d3">He also promoted the construction of the historic Hotel Carrasco, conceived as the centerpiece of this urban project and around which a residential community with a distinctive identity developed. Avenida Alfredo Arocena keeps his name alive and continues to commemorate his vision and contribution to the city.</p>
