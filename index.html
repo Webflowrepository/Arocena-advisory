@@ -644,7 +644,9 @@ h2.au-h em{font-style:italic;color:rgba(255,255,255,.35)}
   .who-grid{grid-template-columns:1fr}
   .team-grid{grid-template-columns:1fr!important}
   .ft-top{flex-direction:column}
-  /* split panel: stack vertically on mobile */
+}
+@media(max-width:800px){
+  /* split panel: stack vertically on tablet/mobile */
   #argentina{flex-direction:column;height:auto}
   #argentina > div[style*="flex:1"],#argentina #uruguay{height:70svh;flex:none;width:100%}
   #argentina > div[style*="width:1px"]{width:100%;height:1px}
@@ -1082,11 +1084,7 @@ h2.au-h em{font-style:italic;color:rgba(255,255,255,.35)}
       <div class="ctc-copy">
         <span class="ab-label rv">Contact</span>
         <h2 class="sec-h rv d1">Start your<br>search.</h2>
-        <p class="support rv d2">Tell us what you are looking for. We will assess the market and come back to you with an honest picture of what is available and what it is truly worth.</p>
-        <div class="ctc-meta rv d3">
-          <div class="cm"><span class="cml">Location</span><span class="cmv">San Isidro, Buenos Aires · Punta del Este</span></div>
-          <div class="cm"><span class="cml">Contact</span><span class="cmv">By appointment only</span></div>
-        </div>
+        <a href="mailto:nicoarocena@hotmail.com" class="rv d2" style="font-family:var(--m);font-size:11px;letter-spacing:.2em;color:var(--ink-50);text-transform:uppercase;margin-top:4px;display:inline-block;text-decoration:none">nicoarocena@hotmail.com</a>
       </div>
       <form class="ctc-form" id="ctc-form" novalidate>
         <input type="hidden" name="access_key" value="27911652-f44c-427a-8e71-59a5db85d7a8">
